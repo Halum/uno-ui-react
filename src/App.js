@@ -4,12 +4,14 @@ import {Provider} from 'react-redux';
 import store from './store';
 
 import Header from './components/header.component';
+import Page from './components/page.component';
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <Header></Header>
+        <Page></Page>
       </Provider>
     );
   }
