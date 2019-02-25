@@ -1,8 +1,6 @@
 import {NEW_GAME, JOIN_GAME, PLAYER_READY} from '../actions/types';
 
-const initialState = {
-  game: {name: 'hello'}
-};
+const initialState = {};
 
 export default (state = initialState, action) => {
   switch(action.type) {
