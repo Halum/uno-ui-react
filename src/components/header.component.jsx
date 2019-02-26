@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './button.component';
+import GameCreatedModal from './game.created.modal.component';
 import { createNewGame } from './../actions/initialAction';
 
-export class HeaderComponent extends Component {
+class HeaderComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -24,7 +25,7 @@ export class HeaderComponent extends Component {
             className="btn-outline-success"
             onClick={this.onCreateGameClick}></Button>
         </nav>
-        <div>{JSON.stringify(this.props.game)}</div>
+        <GameCreatedModal></GameCreatedModal>
       </div>
     );
   }
