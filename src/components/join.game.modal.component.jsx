@@ -19,28 +19,28 @@ class JoinGameModalComponent extends Component {
   render() {
     return (
       <div>
-        <div class="modal fade" id="joinGameModal" tabindex="-1" role="dialog" aria-labelledby="joinGameModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="joinGameModalLabel">Join A Game</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal fade" id="joinGameModal" tabIndex="-1" role="dialog" aria-labelledby="joinGameModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="joinGameModalLabel">Join A Game</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-              <form>
-                <div class="form-group row">
-                  <div class="col">
-                    <input type="text" class="form-control" id="gameIdInput" placeholder="Game ID"/>
+              <div className="modal-body">
+                <form>
+                  <div className="form-group row">
+                    <div className="col">
+                      <input type="text" className="form-control" id="gameIdInput" placeholder="Game ID"/>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col">
-                    <input type="text" class="form-control" id="nameInput" placeholder="Your Name"/>
+                  <div className="form-group row">
+                    <div className="col">
+                      <input type="text" className="form-control" id="nameInput" placeholder="Your Name"/>
+                    </div>
                   </div>
-                </div>
-              </form>
+                </form>
               </div>
             </div>
           </div>
@@ -51,7 +51,6 @@ class JoinGameModalComponent extends Component {
 };
 
 const mapStoreToProps = store => {
-  console.log(store);
   return {
     game: store.initializer.game
   };
