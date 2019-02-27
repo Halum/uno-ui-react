@@ -9,11 +9,11 @@ class GameCreatedModalComponent extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-     if(props.game && props.game.gameId !== state.gameId) {
+    if(props.game && props.game.gameId !== state.gameId) {
       $('#gameCreatedModal').modal();
-       return {gameId: props.game.gameId};
-     }
-     return state;
+      return {gameId: props.game.gameId};
+    }
+    return state;
   }
 
   render() {

@@ -1,6 +1,9 @@
 import {NEW_GAME, JOIN_GAME, PLAYER_READY} from '../actions/types';
 
-const initialState = {};
+const initialState = {
+  game: {},
+  player: {}
+};
 
 export default (state = initialState, action) => {
   switch(action.type) {
@@ -10,10 +13,9 @@ export default (state = initialState, action) => {
         game: action.payload
       };
     case JOIN_GAME:
-      console.log(action.payload)
       return {
         ...state,
-        self: action.payload
+        player: action.payload
       };
     case PLAYER_READY:
       return {
