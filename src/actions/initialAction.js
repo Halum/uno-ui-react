@@ -1,50 +1,40 @@
 import {NEW_GAME, JOIN_GAME, PLAYER_READY} from './types';
+import { post } from './../lib/request';
 
 const url = 'http://localhost:3500/uno';
 
 export const createNewGame = () => dispatch => {
-  fetch(`${url}/new`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(game => 
+  const reqUrl = `${url}/new`;
+
+  post(reqUrl)
+  .then(data => 
     dispatch({
       type: NEW_GAME,
-      payload: game
+      payload: data
     })
   );
 };
 
 export const joinGame = payload => dispatch => {
-  fetch(`${url}/new`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(game => 
+  const reqUrl = `${url}/join`;
+
+  post(reqUrl, payload)
+  .then(data => 
     dispatch({
       type: JOIN_GAME,
-      payload: game
+      payload: data
     })
   );
 };
 
 export const playerReady = payload => dispatch => {
-  fetch(`${url}/new`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(game => 
+  const reqUrl = `${url}/player/ready`;
+
+  post(reqUrl, payload)
+  .then(data => 
     dispatch({
       type: PLAYER_READY,
-      payload: game
+      payload: data
     })
   );
 };
