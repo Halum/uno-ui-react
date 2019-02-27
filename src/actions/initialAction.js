@@ -16,7 +16,7 @@ export const createNewGame = () => dispatch => {
 };
 
 export const joinGame = payload => dispatch => {
-  const reqUrl = `${url}/join`;
+  const reqUrl = `${url}/player`;
 
   post(reqUrl, payload)
   .then(data => 

@@ -4,13 +4,12 @@ import Button from './button.component';
 import GameCreatedModal from './game.created.modal.component';
 import JoinGameModal from './join.game.modal.component';
 import { createNewGame } from './../actions/initialAction';
+import { toggleJoinGameModal } from './../actions/uiAction';
 
 class HeaderComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showJoinGameModal: false
-    };
+    this.state = {};
 
     this.onCreateGameClick = this.onCreateGameClick.bind(this);
     this.onJoinGameClick = this.onJoinGameClick.bind(this);
@@ -21,7 +20,7 @@ class HeaderComponent extends Component {
   }
 
   onJoinGameClick() {
-    this.setState({showJoinGameModal: true});
+    this.props.toggleJoinGameModal();
   }
 
   render() {
@@ -53,4 +52,4 @@ const mapStoreToProps = store => {
   };
 };
 
-export default connect(mapStoreToProps, { createNewGame })(HeaderComponent);
+export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal })(HeaderComponent);

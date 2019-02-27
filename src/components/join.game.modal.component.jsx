@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import $ from 'jquery';
 import {joinGame} from './../actions/initialAction';
 import Button from './button.component';
+import { toggleJoinGameModal } from './../actions/uiAction';
 
 class JoinGameModalComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameId: '',
-      playerName: ''
+      show: this.props.ui.showJoinGameModal,
+      gameId: '12345',
+      playerName: 'Sajjad'
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -24,15 +26,19 @@ class JoinGameModalComponent extends Component {
   }
 
   onJoinClick() {
-
+    const {gameId, playerName} = this.state;
+    this.props.joinGame({gameId, playerName});
+    this.props.toggleJoinGameModal();
   }
 
   static getDerivedStateFromProps(props, state) {
-    if(props.show) {
-      $('#joinGameModal').modal();
-      return {show: props.show};
+    const show = props.ui.showJoinGameModal;
+    const action = show ? 'show' : 'hide';
+
+    if(show !== state.show) {
+      $('#joinGameModal').modal(action);
     }
-     return state;
+    return {show};
   }
 
   render() {
@@ -43,7 +49,7 @@ class JoinGameModalComponent extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="joinGameModalLabel">Join A Game</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" onClick={()=>this.props.toggleJoinGameModal()} className="close" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -61,7 +67,8 @@ class JoinGameModalComponent extends Component {
                         name="playerName" placeholder="Your Name" value={this.state.playerName}/>
                     </div>
                   </div>
-                  <Button content="Join" className="btn-success col"></Button>
+                  <Button content="Join" onClick={this.onJoinClick} 
+                    className="btn-success col"></Button>
                 </form>
               </div>
             </div>
@@ -73,9 +80,11 @@ class JoinGameModalComponent extends Component {
 };
 
 const mapStoreToProps = store => {
+  console.log(store)
   return {
-    game: store.initializer.game
+    game: store.initializer.game,
+    ui: store.ui
   };
 };
 
-export default connect(mapStoreToProps, {joinGame})(JoinGameModalComponent);
+export default connect(mapStoreToProps, {joinGame, toggleJoinGameModal})(JoinGameModalComponent);
