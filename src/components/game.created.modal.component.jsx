@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 
-class GameCreatedComponent extends Component {
+class GameCreatedModalComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showModal: this.props.game ? true : false,
-      gameId: null
-    };
+    this.state = {gameId: null};
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -48,4 +45,4 @@ const mapStoreToProps = store => {
   };
 };
 
-export default connect(mapStoreToProps, null)(GameCreatedComponent);
+export default connect(mapStoreToProps, null)(GameCreatedModalComponent);
