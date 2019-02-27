@@ -10,9 +10,10 @@ export default (state = initialState, action) => {
         game: action.payload
       };
     case JOIN_GAME:
+      console.log(action.payload)
       return {
         ...state,
-        game: action.payload
+        self: action.payload
       };
     case PLAYER_READY:
       return {

@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 
-class GameCreatedComponent extends Component {
+class GameCreatedModalComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showModal: this.props.game ? true : false,
-      gameId: null
-    };
+    this.state = {gameId: null};
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -22,16 +19,16 @@ class GameCreatedComponent extends Component {
   render() {
     return (
       <div>
-        <div class="modal fade" id="gameCreatedModal" tabindex="-1" role="dialog" aria-labelledby="gameCreatedModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="gameCreatedModalLabel">New Game Created</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div className="modal fade" id="gameCreatedModal" tabIndex="-1" role="dialog" aria-labelledby="gameCreatedModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="gameCreatedModalLabel">New Game Created</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 Game ID: {this.state.gameId}
               </div>
             </div>
@@ -48,4 +45,4 @@ const mapStoreToProps = store => {
   };
 };
 
-export default connect(mapStoreToProps, null)(GameCreatedComponent);
+export default connect(mapStoreToProps, null)(GameCreatedModalComponent);
