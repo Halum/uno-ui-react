@@ -1,5 +1,6 @@
-import {NEW_GAME, JOIN_GAME, PLAYER_READY} from './types';
+import {NEW_GAME, JOIN_GAME, PLAYER_READY, GAME_UPDATE, PLAYER_UPDATE} from './types';
 import { post } from './../lib/request';
+import socketService from './../lib/socketService';
 
 const url = 'http://localhost:3500/uno';
 
@@ -38,3 +39,15 @@ export const playerReady = payload => dispatch => {
     })
   );
 };
+
+export const prepareForSocket = ({gameId, playerId}) => dispatch => {
+  socketService.connect(gameId);
+  socketService.onGameUpdate(gameId, data => dispatch({
+    type: GAME_UPDATE,
+    payload: data
+  }));
+  socketService.onPlayerUpdate(playerId, data => dispatch({
+    type: PLAYER_UPDATE,
+    payload: data
+  }));
+}

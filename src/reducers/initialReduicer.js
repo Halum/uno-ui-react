@@ -10,7 +10,6 @@ export default (state = initialState, action) => {
         game: action.payload
       };
     case JOIN_GAME:
-      console.log(action.payload)
       return {
         ...state,
         self: action.payload
