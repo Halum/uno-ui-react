@@ -30,7 +30,7 @@ class CardSpriteMap {
 
   generateWildTypes() {
     for(let sprite of wildTypes) {
-      this.spriteMap[sprite.symbol] = {...sprite, ...spriteDimentions};
+      this.spriteMap[sprite.color + sprite.symbol] = {...sprite, ...spriteDimentions};
     }
   }
 

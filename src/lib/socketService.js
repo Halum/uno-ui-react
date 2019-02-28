@@ -20,6 +20,7 @@ class SocketService {
   }
 
   onPlayerUpdate(playerId, callback) {
+    console.log('update')
     this.socket && this.socket.on(playerId, callback);
   }
 }

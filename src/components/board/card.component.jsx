@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Sprite} from 'react-spritesheet';
 import PropTypes from 'prop-types';
-import spriteMap from './../../images/card.sprite.map';
+import spriteMap from '../../lib/card.sprite.map';
 import largeSpriteSheet from './../../images/spritesheet_uno.png';
 
 class Card extends Component {
