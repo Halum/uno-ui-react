@@ -1,13 +1,11 @@
 import React from 'react';
 import Board from './board.component';
 import Players from './players.component';
-import {Sprite} from 'react-spritesheet';
-import largeSpriteSheet from './../images/spritesheet_uno.png';
 
 const Page = props => (
   <div class="container-fluid d-flex h-100 flex-column">
     <div class="row flex-fill">
-      <div class="col-9 bg-success">
+      <div class="col-9 bg-secondary card pb-3">
         <Board ></Board>
       </div>
       <div class="col-3">
