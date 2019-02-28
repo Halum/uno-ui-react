@@ -11,6 +11,11 @@ class BoardCards extends Component {
     return (
       <div>
         <Card color="any" symbol="cover"></Card>
+        {
+          this.props.game.desk 
+          ? <Card color={this.props.game.desk.discard.color} symbol={this.props.game.desk.discard.symbol}></Card>
+          : ''
+        }
       </div>
     );
   }
@@ -19,6 +24,7 @@ class BoardCards extends Component {
 
 const mapStoreToProps = store => {
   return {
+    game: store.initializer.game
   };
 };
 
