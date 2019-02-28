@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {prepareForSocket} from './../actions/initialAction';
+import PlayerCards from './board/player.cards.component';
 
-export class boardComponent extends Component {
+class BoardComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +26,12 @@ export class boardComponent extends Component {
 
   render() {
     return (
-      <div>This is board {JSON.stringify(this.state)}</div>
+      <div className="row h-100">
+        <div className="col-12 h-50 pb-3"></div>
+        <div className="col-12 h-50 pb-3">
+          <PlayerCards></PlayerCards>
+        </div>
+      </div>
     );
   }
 };
@@ -37,4 +43,4 @@ const mapStoreToProps = store => {
   };
 };
 
-export default connect(mapStoreToProps, {prepareForSocket})(boardComponent);
+export default connect(mapStoreToProps, {prepareForSocket})(BoardComponent);

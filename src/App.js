@@ -4,6 +4,7 @@ import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import {Provider} from 'react-redux';
 import store from './store';
+import './App.css';
 
 import Header from './components/header.component';
 import Page from './components/page.component';
