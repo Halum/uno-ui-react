@@ -23,6 +23,16 @@ class SocketService {
     console.log('update')
     this.socket && this.socket.on(playerId, callback);
   }
+
+  takeCard(playerId) {
+    this.socket.emit('take-card', playerId);
+  }
+
+  playCard(playerId, card) {
+    const data = {playerId, card};
+    
+    this.socket.emit('play-card', data);
+  }
 }
 
 export default new SocketService();
