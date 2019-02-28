@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     case PLAYER_READY:
       return {
         ...state,
-        game: action.payload
+        player: action.payload
       };
     default:
       return state;

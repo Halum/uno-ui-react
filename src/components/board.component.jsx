@@ -15,6 +15,8 @@ export class boardComponent extends Component {
       const gameId = props.game.gameId;
       const playerId = props.player.playerId;
 
+      console.log('sdaf', playerId);
+
       props.prepareForSocket({gameId, playerId});
       return {playerId};
     }
@@ -29,7 +31,6 @@ export class boardComponent extends Component {
 };
 
 const mapStoreToProps = store => {
-  console.log('here', store);
   return {
     game: store.initializer.game,
     player: store.initializer.player

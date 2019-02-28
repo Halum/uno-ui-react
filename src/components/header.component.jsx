@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Button from './button.component';
 import GameCreatedModal from './game.created.modal.component';
 import JoinGameModal from './join.game.modal.component';
-import { createNewGame } from './../actions/initialAction';
+import { createNewGame, playerReady } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
 
 class HeaderComponent extends Component {
@@ -13,6 +13,7 @@ class HeaderComponent extends Component {
 
     this.onCreateGameClick = this.onCreateGameClick.bind(this);
     this.onJoinGameClick = this.onJoinGameClick.bind(this);
+    this.onReadyClick = this.onReadyClick.bind(this);
   }
 
   onCreateGameClick() {
@@ -23,12 +24,23 @@ class HeaderComponent extends Component {
     this.props.toggleJoinGameModal();
   }
 
+  onReadyClick() {
+    const gameId = this.props.game.gameId;
+    const playerId = this.props.player.playerId;
+
+    this.props.playerReady({gameId, playerId});
+  }
+
   render() {
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
           <div className="navbar-brand h1">Halum Uno</div>
           <div>
+            <Button content="Ready"
+              className="btn-outline-info"
+              onClick={this.onReadyClick}>
+            </Button>
             <Button content="Join Game"
               className="btn-outline-success"
               onClick={this.onJoinGameClick}>
@@ -48,8 +60,9 @@ class HeaderComponent extends Component {
 
 const mapStoreToProps = store => {
   return {
-    game: store.initializer.game
+    game: store.initializer.game,
+    player: store.initializer.player
   };
 };
 
-export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal })(HeaderComponent);
+export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal, playerReady })(HeaderComponent);

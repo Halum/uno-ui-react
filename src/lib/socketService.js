@@ -10,6 +10,7 @@ class SocketService {
       });
 
       this.socket.on(gameId, console.log);
+      this.socket.on('count-down', console.log);
     }
   }
 

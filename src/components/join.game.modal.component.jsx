@@ -80,7 +80,6 @@ class JoinGameModalComponent extends Component {
 };
 
 const mapStoreToProps = store => {
-  console.log(store)
   return {
     game: store.initializer.game,
     ui: store.ui
