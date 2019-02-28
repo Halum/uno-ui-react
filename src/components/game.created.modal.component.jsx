@@ -10,7 +10,8 @@ class GameCreatedModalComponent extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if(props.game && props.game.gameId !== state.gameId) {
-      $('#gameCreatedModal').modal();
+      // don'w show modal when player directly joins a game
+      if(!props.game.joined) $('#gameCreatedModal').modal();
       return {gameId: props.game.gameId};
     }
     return state;
