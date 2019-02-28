@@ -13,7 +13,7 @@ class BoardComponent extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if(props.player.id && !state.playerId) {
+    if(props.player.playerId && !state.playerId) {
       const gameId = props.game.gameId;
       const playerId = props.player.playerId;
 
