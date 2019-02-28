@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {prepareForSocket} from './../actions/initialAction';
 import PlayerCards from './board/player.cards.component';
+import BoardCards from './board/board.cards.component';
 
 class BoardComponent extends Component {
   constructor(props) {
@@ -27,7 +28,9 @@ class BoardComponent extends Component {
   render() {
     return (
       <div className="row h-100">
-        <div className="col-12 h-50 pb-3"></div>
+        <div className="col-12 h-50 pb-3">
+          <BoardCards></BoardCards>
+        </div>
         <div className="col-12 h-50 pb-3">
           <PlayerCards></PlayerCards>
         </div>
