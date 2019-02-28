@@ -9,15 +9,17 @@ class PlayerCards extends Component {
 
   showCard(card, index) {
     const {color, symbol} = card;
+    const key = color + symbol + index;
+
     return (
-      <Card color={color} symbol={symbol} key={index}></Card>
+      <Card color={color} symbol={symbol} key={key} playAble></Card>
     );
   }
 
   render() {
     return (
       <div>
-        {
+        { 
           this.props.player.cards
           ? this.props.player.cards.map(this.showCard)
           : ''

@@ -18,6 +18,12 @@ export const createNewGame = () => dispatch => {
 
 export const joinGame = payload => dispatch => {
   const reqUrl = `${url}/player`;
+  const {gameId} = payload;
+  // this dispatch is useful when player directly joins a game
+  dispatch({
+    type: NEW_GAME,
+    payload: {gameId, joined: true} // indicates player joined without creating a game
+  });
 
   post(reqUrl, payload)
   .then(data => 
