@@ -26,9 +26,9 @@ class BoardComponent extends Component {
 
   render() {
     return (
-      <div class="row h-100">
-        <div class="col-12 h-50 pb-3"></div>
-        <div class="col-12 h-50 pb-3">
+      <div className="row h-100">
+        <div className="col-12 h-50 pb-3"></div>
+        <div className="col-12 h-50 pb-3">
           <PlayerCards></PlayerCards>
         </div>
       </div>
