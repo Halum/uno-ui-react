@@ -1,5 +1,5 @@
 import React from 'react';
-import Board from './board.component';
+import Board from './board/board.component';
 import Players from './players.component';
 
 const Page = props => (

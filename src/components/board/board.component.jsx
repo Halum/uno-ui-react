@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {prepareForSocket} from './../actions/initialAction';
-import PlayerCards from './board/player.cards.component';
-import BoardCards from './board/board.cards.component';
+import {prepareForSocket} from './../../actions/initialAction';
+import PlayerCards from './player.cards.component';
+import BoardCards from './board.cards.component';
 
 class BoardComponent extends Component {
   constructor(props) {
