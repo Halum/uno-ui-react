@@ -10,13 +10,8 @@ const Page = props => (
       </div>
       <div className="col-3">
         <div className="row h-100">
-          <div className="col-12 h-50 pb-3">
+          <div className="col-12 h-100 pb-3">
             <Players></Players>
-          </div>
-          <div className="col-12 h-50 pb-3">
-            <div className="card bg-light h-100">
-
-            </div>
           </div>
         </div>
       </div>

@@ -5,15 +5,15 @@ import Card from './card.component';
 class PlayerCards extends Component {
   constructor(props) {
     super(props);
+
+    this.showCard = this.showCard.bind(this);
   }
 
   showCard(card, index) {
     const {color, symbol} = card;
     const key = color + symbol + index;
 
-    return (
-      <Card color={color} symbol={symbol} key={key} playAble></Card>
-    );
+    return <Card color={color} symbol={symbol} key={key} playAble></Card>
   }
 
   render() {
