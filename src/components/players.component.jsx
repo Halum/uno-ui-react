@@ -1,22 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PlayerListItem from './player/player.list.item.component';
 
-export class PlayersComponent extends Component {
+class PlayersComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    this.showParticipants = this.showParticipants.bind(this);
+  }
+
+  showParticipants(participant, index) {
+    const {playerName, cardCount, playing} = participant;
+    const key = playerName + index;
+    
+    return <PlayerListItem playerName={playerName} cardCount={cardCount} playing={playing} key={key}></PlayerListItem>
   }
 
   render() {
     return (
-      <div>This is players</div>
+      <div className="card bg-light">
+        <div className="card-body">
+          <h5 className="card-title">Players</h5>
+        </div>
+        <ul className="list-group list-group-flush">
+          {
+            this.props.game.participants
+            ? this.props.game.participants.map(this.showParticipants)
+            : ''
+          }
+        </ul>
+      </div>
     );
   }
 };
 
 const mapStoreToProps = store => {
   return {
-
+    game: store.initializer.game
   };
 };
 
