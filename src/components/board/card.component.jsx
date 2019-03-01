@@ -19,7 +19,7 @@ class Card extends Component {
 
   onCardClick() {
     // player can manipulate only while playing
-    if(this.props.player.status !== 'playing' || this.props.player.turn) return;
+    if(this.props.player.status !== 'playing' || !this.props.player.turn) return;
     
     const {playerId} = this.props.player;
     const {color, symbol} = this.props;
