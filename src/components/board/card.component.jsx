@@ -30,7 +30,7 @@ class Card extends Component {
 
   render() {
     return (
-      <div className="d-inline-block" onClick={this.onCardClick}>
+      <div className="d-inline-block pl-2" onClick={this.onCardClick}>
         <Sprite key={this.state.key} filename={largeSpriteSheet} x={this.state.x} y={this.state.y} width={this.state.width} height={this.state.height}></Sprite>
       </div>
     );

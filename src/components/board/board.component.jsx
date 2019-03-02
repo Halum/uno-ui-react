@@ -28,10 +28,10 @@ class BoardComponent extends Component {
   render() {
     return (
       <div className="row h-100">
-        <div className="col-12 h-50 pb-3">
+        <div className="col-12 h-50 pb-3 d-flex justify-content-center align-items-center">
           <BoardCards></BoardCards>
         </div>
-        <div className="col-12 h-50 pb-3">
+        <div className="col-12 h-50 pb-3 d-flex justify-content-center">
           <PlayerCards></PlayerCards>
         </div>
       </div>

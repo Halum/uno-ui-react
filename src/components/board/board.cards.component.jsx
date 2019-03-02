@@ -22,12 +22,11 @@ class BoardCards extends Component {
   render() {
     return (
       <div>
-        <Card color={this.coverColor} symbol={this.coverSymbol} key={this.coverKey} takeAble></Card>
-        {
-          this.props.game.desk 
+        {this.props.game.desk 
           ? this.showCard()
           : ''
         }
+        <Card color={this.coverColor} symbol={this.coverSymbol} key={this.coverKey} takeAble></Card>
       </div>
     );
   }
