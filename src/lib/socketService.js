@@ -1,9 +1,11 @@
 import io  from 'socket.io-client';
+import config from './../config';
 
+const url = `${config.server}:${config.port}`;
 class SocketService {
   connect(gameId) {
     if(!this.socket || this.socket.disconnected) {
-      this.socket = this.socket || io(`http://localhost:3500/${gameId}`);
+      this.socket = this.socket || io(`${url}/${gameId}`);
 
       this.socket.on('connect', () => {
         console.log('Connected');
