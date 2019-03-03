@@ -1,4 +1,0 @@
-[submodule "uno-server"]
-	path = uno-server
-	url = https://github.com/Halum/uno-server.git
-	branch = develop
