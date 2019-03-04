@@ -6,9 +6,11 @@ const Button = ({
   onClick,
   className,
 }) => (
-  <button className={`btn ${className}`} onClick={onClick} type="button">
-    {content}
-  </button>
+  <span className="pl-3">
+    <button className={`btn ${className}`} onClick={onClick} type="button">
+      {content}
+    </button>
+  </span>
 )
 
 Button.propTypes = {
