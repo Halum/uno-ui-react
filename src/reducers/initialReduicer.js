@@ -15,7 +15,8 @@ export default (state = initialState, action) => {
     case JOIN_GAME:
       return {
         ...state,
-        player: action.payload
+        game: {...state.game, ...action.payload.game},
+        player: {...state.player, ...action.payload.player}
       };
     case PLAYER_READY:
       return {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './card.component';
+import has from 'lodash.has';
 
 class BoardCards extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class BoardCards extends Component {
   render() {
     return (
       <div>
-        {this.props.game.desk 
+        {has(this.props.game, 'desk.discard')
           ? this.showCard()
           : ''
         }
