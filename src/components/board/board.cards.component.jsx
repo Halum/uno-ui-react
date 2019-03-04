@@ -22,7 +22,7 @@ class BoardCards extends Component {
   render() {
     return (
       <div>
-        {this.props.game.desk 
+        {this.props.game.desk && this.props.game.desk.discard
           ? this.showCard()
           : ''
         }
