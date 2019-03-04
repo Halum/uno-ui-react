@@ -5,6 +5,7 @@ import GameCreatedModal from './game.created.modal.component';
 import JoinGameModal from './join.game.modal.component';
 import { createNewGame, playerReady } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
+import get from 'lodash.get';
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -37,14 +38,20 @@ class HeaderComponent extends Component {
         <nav className="navbar navbar-dark bg-dark">
           <div className="navbar-brand h1">Halum Uno</div>
           <div>
-            <Button content="Ready"
-              className="btn-outline-info" wrapperClassName="pl-3"
-              onClick={this.onReadyClick}>
-            </Button>
-            <Button content="Join Game"
-              className="btn-outline-success" wrapperClassName="pl-3"
-              onClick={this.onJoinGameClick}>
-            </Button>
+            { get(this.props.player, 'status') === 'waiting'
+              ? <Button content="Ready"
+                  className="btn-outline-info" wrapperClassName="pl-3"
+                  onClick={this.onReadyClick}>
+                </Button>
+              : ''
+            }
+            { get(this.props.player, 'status') === undefined
+              ? <Button content="Join Game"
+                  className="btn-outline-success" wrapperClassName="pl-3"
+                  onClick={this.onJoinGameClick}>
+                </Button>
+              : ''
+            }
             <Button content="Create Game" 
               className="btn-outline-warning" wrapperClassName="pl-3"
               onClick={this.onCreateGameClick}>
