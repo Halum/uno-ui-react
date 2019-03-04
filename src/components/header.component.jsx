@@ -38,15 +38,15 @@ class HeaderComponent extends Component {
           <div className="navbar-brand h1">Halum Uno</div>
           <div>
             <Button content="Ready"
-              className="btn-outline-info"
+              className="btn-outline-info" wrapperClassName="pl-3"
               onClick={this.onReadyClick}>
             </Button>
             <Button content="Join Game"
-              className="btn-outline-success"
+              className="btn-outline-success" wrapperClassName="pl-3"
               onClick={this.onJoinGameClick}>
             </Button>
             <Button content="Create Game" 
-              className="btn-outline-warning"
+              className="btn-outline-warning" wrapperClassName="pl-3"
               onClick={this.onCreateGameClick}>
             </Button>
           </div>

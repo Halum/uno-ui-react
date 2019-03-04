@@ -5,8 +5,9 @@ const Button = ({
   content,
   onClick,
   className,
+  wrapperClassName
 }) => (
-  <span className="pl-3">
+  <span className={wrapperClassName}>
     <button className={`btn ${className}`} onClick={onClick} type="button">
       {content}
     </button>
@@ -16,7 +17,8 @@ const Button = ({
 Button.propTypes = {
   content: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  wrapperClassName: PropTypes.string
 };
 
 export default Button;
