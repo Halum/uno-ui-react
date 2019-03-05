@@ -48,7 +48,7 @@ class ColorChooserModalComponent extends Component {
                       <div className="card bg-primary" onClick={() => this.onColorClick('blue')}><div className="card-body"></div></div>
                     </div>
                     <div className="col-6">
-                      <div className="card bg-warning" onClick={() => this.onColorClick('yello')}><div className="card-body"></div></div>
+                      <div className="card bg-warning" onClick={() => this.onColorClick('yellow')}><div className="card-body"></div></div>
                     </div>
                   </div>
                 </div>

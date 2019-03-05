@@ -35,7 +35,7 @@ class Card extends Component {
 
   render() {
     return (
-      <div className="d-inline-block pl-2" onClick={this.onCardClick}>
+      <div className={'d-inline-block pl-2 ' + this.props.style} onClick={this.onCardClick}>
         <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
       </div>
     );
@@ -52,7 +52,8 @@ Card.propTypes = {
   symbol: PropTypes.string.isRequired,
   takeAble: PropTypes.bool,
   playAble: PropTypes.bool,
-  onWildCard: PropTypes.func
+  onWildCard: PropTypes.func,
+  style: PropTypes.string
 };
 
 const mapStoreToProps = store => {

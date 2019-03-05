@@ -15,12 +15,14 @@ class BoardCards extends Component {
 
   showCard() {
     let {color, symbol} = this.props.game.desk.discard;
+    // this a current card color highlight in the background
+    const bgColorMap = {red: 'danger', blue: 'primary', yellow: 'warning', green: 'success'}
+    const bgColor = 'bg-' + bgColorMap[color];
     // as I do not have colored wild card, so show the common one
     color = ['wild', '4+'].includes(symbol) ? 'any' : color;
     const key = color + symbol;
-    console.log('showing card', key);
     
-    return <Card color={color} symbol={symbol} key={key}></Card>
+    return <Card color={color} symbol={symbol} key={key} style={bgColor}></Card>
   }
 
   render() {
@@ -30,7 +32,7 @@ class BoardCards extends Component {
           ? this.showCard()
           : ''
         }
-        <Card color={this.coverColor} symbol={this.coverSymbol} key={this.coverKey} takeAble></Card>
+        <Card color={this.coverColor} symbol={this.coverSymbol} key={this.coverKey} takeAble />
       </div>
     );
   }
