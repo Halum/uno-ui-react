@@ -34,18 +34,18 @@ class ColorChooserModalComponent extends Component {
                 <div className="container-fluid">
                   <div className="row pb-3">
                     <div className="col-6">
-                      <div class="card bg-danger"><div class="card-body"></div></div>
+                      <div className="card bg-danger"><div className="card-body"></div></div>
                     </div>
                     <div className="col-6">
-                      <div class="card bg-success"><div class="card-body"></div></div>
+                      <div className="card bg-success"><div className="card-body"></div></div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-6">
-                      <div class="card bg-primary"><div class="card-body"></div></div>
+                      <div className="card bg-primary"><div className="card-body"></div></div>
                     </div>
                     <div className="col-6">
-                      <div class="card bg-warning"><div class="card-body"></div></div>
+                      <div className="card bg-warning"><div className="card-body"></div></div>
                     </div>
                   </div>
                 </div>
