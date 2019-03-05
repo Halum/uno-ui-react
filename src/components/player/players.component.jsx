@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PlayerListItem from './player/player.list.item.component';
+import PlayerListItem from './player.list.item.component';
 
 class PlayersComponent extends Component {
   constructor(props) {
