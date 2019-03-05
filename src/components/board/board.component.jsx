@@ -17,8 +17,6 @@ class BoardComponent extends Component {
       const gameId = props.game.gameId;
       const playerId = props.player.playerId;
 
-      console.log('sdaf', playerId);
-
       props.prepareForSocket({gameId, playerId});
       return {playerId};
     }
@@ -29,10 +27,10 @@ class BoardComponent extends Component {
     return (
       <div className="row h-100">
         <div className="col-12 h-50 pb-3 d-flex justify-content-center align-items-center">
-          <BoardCards></BoardCards>
+          <BoardCards/>
         </div>
         <div className="col-12 h-50 pb-3 d-flex justify-content-center">
-          <PlayerCards></PlayerCards>
+          <PlayerCards/>
         </div>
       </div>
     );

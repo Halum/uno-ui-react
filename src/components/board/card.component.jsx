@@ -12,8 +12,8 @@ class Card extends Component {
 
     const spriteData = spriteMap[props.color + props.symbol];
     const {x, y, width, height} = spriteData;
-    
-    this.state = {x, y, width, height};
+
+    this.spriteData = {x, y, width, height};
     this.onCardClick = this.onCardClick.bind(this);
   }
 
@@ -23,15 +23,20 @@ class Card extends Component {
     
     const {playerId} = this.props.player;
     const {color, symbol} = this.props;
-
-    if(this.props.playAble) return socketService.playCard(playerId, {color, symbol});
-    if(this.props.takeAble) return socketService.takeCard(playerId);
+    
+    if(this.props.playAble) {
+      if(['wild', '4+'].includes(symbol)) {
+        return this.props.onWildCard(symbol);
+      }
+      return socketService.playCard(playerId, {color, symbol});
+    }
+    else if(this.props.takeAble) return socketService.takeCard(playerId);
   }
 
   render() {
     return (
-      <div className="d-inline-block pl-2" onClick={this.onCardClick}>
-        <Sprite key={this.state.key} filename={largeSpriteSheet} x={this.state.x} y={this.state.y} width={this.state.width} height={this.state.height}></Sprite>
+      <div className={'d-inline-block pl-2 ' + this.props.style} onClick={this.onCardClick}>
+        <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
       </div>
     );
   }
@@ -46,7 +51,9 @@ Card.propTypes = {
   color: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
   takeAble: PropTypes.bool,
-  playAble: PropTypes.bool
+  playAble: PropTypes.bool,
+  onWildCard: PropTypes.func,
+  style: PropTypes.string
 };
 
 const mapStoreToProps = store => {
