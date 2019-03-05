@@ -12,9 +12,8 @@ class Card extends Component {
 
     const spriteData = spriteMap[props.color + props.symbol];
     const {x, y, width, height} = spriteData;
-    
-    this.state = {x, y, width, height};
 
+    this.spriteData = {x, y, width, height};
     this.onCardClick = this.onCardClick.bind(this);
   }
 
@@ -27,7 +26,7 @@ class Card extends Component {
     
     if(this.props.playAble) {
       if(['wild', '4+'].includes(symbol)) {
-        return this.props.onWildCard();
+        return this.props.onWildCard(symbol);
       }
       return socketService.playCard(playerId, {color, symbol});
     }
@@ -37,7 +36,7 @@ class Card extends Component {
   render() {
     return (
       <div className="d-inline-block pl-2" onClick={this.onCardClick}>
-        <Sprite key={this.state.key} filename={largeSpriteSheet} x={this.state.x} y={this.state.y} width={this.state.width} height={this.state.height}></Sprite>
+        <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
       </div>
     );
   }

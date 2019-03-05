@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import $ from 'jquery';
+import socketService from './../../lib/socketService';
 
 class ColorChooserModalComponent extends Component {
   constructor() {
     super();
     this.state = {}
+
+    this.onColorClick = this.onColorClick.bind(this);
   }
 
   static getDerivedStateFromProps(props, state) {
     const action = props.show ? 'show' : 'hide';
     $('#colorChooserModal').modal(action);
     return state;
+  }
+
+  onColorClick(color) {
+    const symbol = this.props.symbol;
+    const {playerId} = this.props.player;
+    this.props.onClose();
+    return socketService.playCard(playerId, {color, symbol});
   }
 
   render() {
@@ -21,26 +32,23 @@ class ColorChooserModalComponent extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="colorChooserModalLabel">Choose Color</h5>
-                <button type="button" onClick={()=>this.props.onClose()} className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
               </div>
               <div className="modal-body">
                 <div className="container-fluid">
                   <div className="row pb-3">
                     <div className="col-6">
-                      <div className="card bg-danger"><div className="card-body"></div></div>
+                      <div className="card bg-danger" onClick={() => this.onColorClick('red')}><div className="card-body"></div></div>
                     </div>
                     <div className="col-6">
-                      <div className="card bg-success"><div className="card-body"></div></div>
+                      <div className="card bg-success" onClick={() => this.onColorClick('green')}><div className="card-body"></div></div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-6">
-                      <div className="card bg-primary"><div className="card-body"></div></div>
+                      <div className="card bg-primary" onClick={() => this.onColorClick('blue')}><div className="card-body"></div></div>
                     </div>
                     <div className="col-6">
-                      <div className="card bg-warning"><div className="card-body"></div></div>
+                      <div className="card bg-warning" onClick={() => this.onColorClick('yello')}><div className="card-body"></div></div>
                     </div>
                   </div>
                 </div>
@@ -53,4 +61,10 @@ class ColorChooserModalComponent extends Component {
   }
 }
 
-export default ColorChooserModalComponent;
+const mapStoreToProps = store => {
+  return {
+    player: store.initializer.player
+  };
+};
+
+export default connect(mapStoreToProps)(ColorChooserModalComponent);
