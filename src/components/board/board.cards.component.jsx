@@ -14,8 +14,11 @@ class BoardCards extends Component {
   }
 
   showCard() {
-    const {color, symbol} = this.props.game.desk.discard;
+    let {color, symbol} = this.props.game.desk.discard;
+    // as I do not have colored wild card, so show the common one
+    color = ['wild', '4+'].includes(symbol) ? 'any' : color;
     const key = color + symbol;
+    console.log('showing card', key);
     
     return <Card color={color} symbol={symbol} key={key}></Card>
   }
