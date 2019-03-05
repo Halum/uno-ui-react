@@ -14,6 +14,7 @@ class Card extends Component {
     const {x, y, width, height} = spriteData;
     
     this.state = {x, y, width, height};
+
     this.onCardClick = this.onCardClick.bind(this);
   }
 
@@ -23,9 +24,14 @@ class Card extends Component {
     
     const {playerId} = this.props.player;
     const {color, symbol} = this.props;
-
-    if(this.props.playAble) return socketService.playCard(playerId, {color, symbol});
-    if(this.props.takeAble) return socketService.takeCard(playerId);
+    
+    if(this.props.playAble) {
+      if(['wild', '4+'].includes(symbol)) {
+        return this.props.onWildCard();
+      }
+      return socketService.playCard(playerId, {color, symbol});
+    }
+    else if(this.props.takeAble) return socketService.takeCard(playerId);
   }
 
   render() {
@@ -46,7 +52,8 @@ Card.propTypes = {
   color: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
   takeAble: PropTypes.bool,
-  playAble: PropTypes.bool
+  playAble: PropTypes.bool,
+  onWildCard: PropTypes.func
 };
 
 const mapStoreToProps = store => {

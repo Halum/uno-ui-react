@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './card.component';
+import ColorChooser from './../modal/color.chooser.modal.component';
 
 class PlayerCards extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {showColorChooser: false};
+
     this.showCard = this.showCard.bind(this);
+    this.onWildCard = this.onWildCard.bind(this);
+    this.onModalCloseClick = this.onModalCloseClick.bind(this);
+  }
+
+  onWildCard() {
+    this.setState({showColorChooser: true});
+  }
+
+  onModalCloseClick() {
+    this.setState({showColorChooser: false});
   }
 
   showCard(card, index) {
     const {color, symbol} = card;
     const key = color + symbol + index;
 
-    return <Card color={color} symbol={symbol} key={key} playAble></Card>
+    return <Card {...{color, symbol, key}} playAble onWildCard={this.onWildCard}></Card>
   }
 
   render() {
@@ -24,6 +37,7 @@ class PlayerCards extends Component {
           ? this.props.player.cards.map(this.showCard)
           : ''
         }
+        <ColorChooser show={this.state.showColorChooser} onClose={this.onModalCloseClick}/>
       </div>
     );
   }
