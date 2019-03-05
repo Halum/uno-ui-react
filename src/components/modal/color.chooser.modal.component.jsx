@@ -4,17 +4,12 @@ import $ from 'jquery';
 class ColorChooserModalComponent extends Component {
   constructor() {
     super();
-    this.state = {show: false}
+    this.state = {}
   }
 
   static getDerivedStateFromProps(props, state) {
-    if(props.show !== state.show) {
-      const show = props.show;
-      const action = show ? 'show' : 'hide';
-
-      $('#colorChooserModal').modal(action);
-      return {show};
-    }
+    const action = props.show ? 'show' : 'hide';
+    $('#colorChooserModal').modal(action);
     return state;
   }
 
@@ -26,7 +21,7 @@ class ColorChooserModalComponent extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="colorChooserModalLabel">Choose Color</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" onClick={()=>this.props.onClose()} className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
