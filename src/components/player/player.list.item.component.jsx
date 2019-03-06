@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {ArrowDownIcon, ArrowUpIcon} from 'react-octicons';
-import { ShakeSlow} from 'reshake';
+import {Bounce} from 'react-motions';
 
 class PlayerListItem extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class PlayerListItem extends Component {
   render() {
     const isMeCurrentPlayer = this.props.playing && this.props.player.turn;
     return (
-      <ShakeSlow   {...{fixed: true, fixedStop: true, dur:2500, trigger: isMeCurrentPlayer}}>
+      <Bounce duration={isMeCurrentPlayer ? 3 : 0} infinite={isMeCurrentPlayer ? true : false}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' 
             + (isMeCurrentPlayer ? 'active' : '')}>
             <div>
@@ -22,7 +22,7 @@ class PlayerListItem extends Component {
             </div>
           <span className="badge badge-dark badge-pill">{this.props.cardCount}</span>
         </li>
-      </ShakeSlow>
+      </Bounce>
     );
   }
 };
