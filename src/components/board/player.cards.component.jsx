@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './card.component';
 import ColorChooser from './../modal/color.chooser.modal.component';
-import socketService from './../../lib/socketService';
 
 class PlayerCards extends Component {
   constructor(props) {
