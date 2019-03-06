@@ -9,10 +9,11 @@ class PlayerListItem extends Component {
   }
 
   render() {
+    const isMeCurrentPlayer = this.props.playing && this.props.player.turn;
     return (
-      <ShakeSlow   {...{fixed: true, fixedStop: true, dur:2500, trigger: this.props.playing && this.props.player.turn}}>
+      <ShakeSlow   {...{fixed: true, fixedStop: true, dur:2500, trigger: isMeCurrentPlayer}}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' 
-            + (this.props.playing ? 'active' : '')}>
+            + (isMeCurrentPlayer ? 'active' : '')}>
             <div>
               <span className={this.props.playing ? 'visible' : 'invisible'}>
                 {this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>}
