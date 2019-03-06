@@ -10,7 +10,7 @@ class PlayerListItem extends Component {
 
   render() {
     return (
-      <ShakeSlow   {...{fixed: true, fixedStop: true, dur:2500}} trigger={this.props.playing}>
+      <ShakeSlow   {...{fixed: true, fixedStop: true, dur:2500, trigger: this.props.playing && this.props.player.turn}}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' 
             + (this.props.playing ? 'active' : '')}>
             <div>
@@ -28,7 +28,8 @@ class PlayerListItem extends Component {
 
 const mapStoreToProps = store => {
   return {
-    game: store.initializer.game
+    game: store.initializer.game,
+    player: store.initializer.player
   };
 };
 
