@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Button from './button.component';
 import GameCreatedModal from './game.created.modal.component';
 import JoinGameModal from './join.game.modal.component';
-import { createNewGame, playerReady } from './../actions/initialAction';
+import { createNewGame } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
 import get from 'lodash.get';
 
@@ -14,7 +14,6 @@ class HeaderComponent extends Component {
 
     this.onCreateGameClick = this.onCreateGameClick.bind(this);
     this.onJoinGameClick = this.onJoinGameClick.bind(this);
-    this.onReadyClick = this.onReadyClick.bind(this);
   }
 
   onCreateGameClick() {
@@ -23,13 +22,6 @@ class HeaderComponent extends Component {
 
   onJoinGameClick() {
     this.props.toggleJoinGameModal();
-  }
-
-  onReadyClick() {
-    const gameId = this.props.game.gameId;
-    const playerId = this.props.player.playerId;
-
-    this.props.playerReady({gameId, playerId});
   }
 
   render() {
@@ -72,4 +64,4 @@ const mapStoreToProps = store => {
   };
 };
 
-export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal, playerReady })(HeaderComponent);
+export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal })(HeaderComponent);

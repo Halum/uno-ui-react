@@ -2,25 +2,51 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {ArrowDownIcon, ArrowUpIcon} from 'react-octicons';
 import {Bounce} from 'react-motions';
+import Button from './../button.component';
+import get from 'lodash.get';
+import { playerReady } from './../../actions/initialAction';
 
 class PlayerListItem extends Component {
   constructor(props) {
     super(props);
+
+    this.onReadyClick = this.onReadyClick.bind(this);
+  }
+
+  onReadyClick() {
+    const gameId = this.props.game.gameId;
+    const playerId = this.props.player.playerId;
+
+    this.props.playerReady({gameId, playerId});
   }
 
   render() {
     const isMeCurrentPlayer = this.props.playing && this.props.player.turn;
+    
+    console.log(this.props.player);
+    console.log(this.props.playerName);
     return (
       <Bounce duration={isMeCurrentPlayer ? 3 : 0} infinite={isMeCurrentPlayer ? true : false}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' 
             + (isMeCurrentPlayer ? 'active' : '')}>
-            <div>
-              <span className={this.props.playing ? 'visible' : 'invisible'}>
-                {this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>}
-              </span>
-              <span className="pl-3">{this.props.playerName}</span>
-            </div>
-          <span className="badge badge-dark badge-pill">{this.props.cardCount}</span>
+          <div>
+            <span className={this.props.playing ? 'visible' : 'invisible'}>
+              {this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>}
+            </span>
+            <span className="pl-3">{this.props.playerName}</span>
+          </div>
+          <div>
+            { // show the ready button only when player status is 'waiting' and
+              // participant name is same as player name
+              get(this.props.player, 'status') === 'waiting' && get(this.props.player, 'name') === this.props.playerName
+              ? <Button content="Ready"
+                  className="btn-outline-success mr-5" wrapperClassName="pl-3"
+                  onClick={this.onReadyClick}>
+                </Button>
+              : ''
+            }
+            <span className="badge badge-dark badge-pill">{this.props.cardCount}</span>
+          </div>
         </li>
       </Bounce>
     );
@@ -34,4 +60,4 @@ const mapStoreToProps = store => {
   };
 };
 
-export default connect(mapStoreToProps)(PlayerListItem);
+export default connect(mapStoreToProps, {playerReady})(PlayerListItem);
