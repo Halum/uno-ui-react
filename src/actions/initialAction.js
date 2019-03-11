@@ -1,7 +1,6 @@
 import {NEW_GAME, JOIN_GAME, PLAYER_READY, GAME_UPDATE, PLAYER_UPDATE} from './types';
 import { post } from './../lib/request';
 import socketService from './../lib/socketService';
-// import config from './../config';
 
 const url = `/uno`;
 
