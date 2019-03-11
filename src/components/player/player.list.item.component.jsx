@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {ArrowDownIcon, ArrowUpIcon} from 'react-octicons';
+import {ArrowDownIcon, ArrowUpIcon, StopIcon} from 'react-octicons';
 import {Bounce} from 'react-motions';
 import Button from './../button.component';
 import get from 'lodash.get';
@@ -23,16 +23,18 @@ class PlayerListItem extends Component {
   render() {
     const isMeCurrentPlayer = this.props.playing && this.props.player.turn;
     
-    console.log(this.props.player);
-    console.log(this.props.playerName);
+    console.log('status', this.props.status)
     return (
+
       <Bounce duration={isMeCurrentPlayer ? 3 : 0} infinite={isMeCurrentPlayer ? true : false}>
-        <li className={'list-group-item d-flex justify-content-between align-items-center ' 
-            + (isMeCurrentPlayer ? 'active' : '')}>
+        <li className={'list-group-item d-flex justify-content-between align-items-center ' + (isMeCurrentPlayer ? 'active' : '')}>
           <div>
+            {/* show direction icon only for the current player */}
             <span className={this.props.playing ? 'visible' : 'invisible'}>
               {this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>}
             </span>
+            {/* show player not ready icon */}
+            <span>{this.props.status === 'waiting' ? <StopIcon/> : ''}</span>
             <span className="pl-3">{this.props.playerName}</span>
           </div>
           <div>
