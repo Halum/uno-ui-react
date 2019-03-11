@@ -28,15 +28,8 @@ class HeaderComponent extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
-          <div className="navbar-brand h1">Halum Uno</div>
+          <div className="navbar-brand h1">Halum Uno <span className="blockquote-footer">0.1.4-alpha</span></div>
           <div>
-            { get(this.props.player, 'status') === 'waiting'
-              ? <Button content="Ready"
-                  className="btn-outline-info" wrapperClassName="pl-3"
-                  onClick={this.onReadyClick}>
-                </Button>
-              : ''
-            }
             { get(this.props.player, 'status') === undefined
               ? <Button content="Join Game"
                   className="btn-outline-success" wrapperClassName="pl-3"
