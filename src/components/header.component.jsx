@@ -6,6 +6,7 @@ import JoinGameModal from './join.game.modal.component';
 import { createNewGame } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
 import get from 'lodash.get';
+import packageJson from './../../package.json';
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class HeaderComponent extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
-          <div className="navbar-brand h1">Halum Uno <span className="blockquote-footer">0.1.4-alpha</span></div>
+          <div className="navbar-brand h1">Halum Uno <span className="blockquote-footer">{packageJson.version}</span></div>
           <div>
             { get(this.props.player, 'status') === undefined
               ? <Button content="Join Game"
