@@ -13,6 +13,13 @@ class PlayerListItem extends Component {
     this.onReadyClick = this.onReadyClick.bind(this);
   }
 
+  getPlayerIcon() {
+    // show player not ready icon
+    if(this.props.status === 'waiting') return <StopIcon/>;
+    // show direction icon only for the current player
+    return this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>
+  }
+
   onReadyClick() {
     const gameId = this.props.game.gameId;
     const playerId = this.props.player.playerId;
@@ -29,12 +36,9 @@ class PlayerListItem extends Component {
       <Bounce duration={isMeCurrentPlayer ? 3 : 0} infinite={isMeCurrentPlayer ? true : false}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' + (isMeCurrentPlayer ? 'active' : '')}>
           <div>
-            {/* show direction icon only for the current player */}
-            <span className={this.props.playing ? 'visible' : 'invisible'}>
-              {this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>}
+            <span className={this.props.playing || this.props.status === 'waiting' ? 'visible' : 'invisible'}>
+              {this.getPlayerIcon()}
             </span>
-            {/* show player not ready icon */}
-            <span>{this.props.status === 'waiting' ? <StopIcon/> : ''}</span>
             <span className="pl-3">{this.props.playerName}</span>
           </div>
           <div>
