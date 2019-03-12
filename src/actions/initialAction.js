@@ -1,9 +1,8 @@
 import {NEW_GAME, JOIN_GAME, PLAYER_READY, GAME_UPDATE, PLAYER_UPDATE} from './types';
 import { post } from './../lib/request';
 import socketService from './../lib/socketService';
-import config from './../config';
 
-const url = `${config.server}:${config.port}/uno`;
+const url = `/uno`;
 
 export const createNewGame = () => dispatch => {
   const reqUrl = `${url}/new`;

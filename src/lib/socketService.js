@@ -1,7 +1,6 @@
 import io  from 'socket.io-client';
-import config from './../config';
 
-const url = `${config.server}:${config.port}`;
+const url = ``;
 class SocketService {
   connect(gameId) {
     if(!this.socket || this.socket.disconnected) {

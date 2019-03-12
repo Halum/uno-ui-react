@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import Button from './button.component';
 import GameCreatedModal from './game.created.modal.component';
 import JoinGameModal from './join.game.modal.component';
-import { createNewGame, playerReady } from './../actions/initialAction';
+import { createNewGame } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
 import get from 'lodash.get';
+import packageJson from './../../package.json';
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class HeaderComponent extends Component {
 
     this.onCreateGameClick = this.onCreateGameClick.bind(this);
     this.onJoinGameClick = this.onJoinGameClick.bind(this);
-    this.onReadyClick = this.onReadyClick.bind(this);
   }
 
   onCreateGameClick() {
@@ -25,26 +25,12 @@ class HeaderComponent extends Component {
     this.props.toggleJoinGameModal();
   }
 
-  onReadyClick() {
-    const gameId = this.props.game.gameId;
-    const playerId = this.props.player.playerId;
-
-    this.props.playerReady({gameId, playerId});
-  }
-
   render() {
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
-          <div className="navbar-brand h1">Halum Uno</div>
+          <div className="navbar-brand h1">Halum Uno <span className="blockquote-footer">{packageJson.version}</span></div>
           <div>
-            { get(this.props.player, 'status') === 'waiting'
-              ? <Button content="Ready"
-                  className="btn-outline-info" wrapperClassName="pl-3"
-                  onClick={this.onReadyClick}>
-                </Button>
-              : ''
-            }
             { get(this.props.player, 'status') === undefined
               ? <Button content="Join Game"
                   className="btn-outline-success" wrapperClassName="pl-3"
@@ -72,4 +58,4 @@ const mapStoreToProps = store => {
   };
 };
 
-export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal, playerReady })(HeaderComponent);
+export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal })(HeaderComponent);

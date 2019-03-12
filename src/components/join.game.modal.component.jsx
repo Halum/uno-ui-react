@@ -11,7 +11,7 @@ class JoinGameModalComponent extends Component {
     this.state = {
       show: this.props.ui.showJoinGameModal,
       gameId: '12345',
-      playerName: 'Sajjad'
+      playerName: ''
     };
 
     this.onInputChange = this.onInputChange.bind(this);
