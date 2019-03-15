@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlayerListItem from './player.list.item.component';
+import PlayerListItemTimer from './player.list.item.timer.component';
 
 class PlayersComponent extends Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class PlayersComponent extends Component {
           <h5 className="card-title">Players</h5>
         </div>
         <ul className="list-group list-group-flush">
+          <PlayerListItemTimer/>
+          
           {
             this.props.game.participants
             ? this.props.game.participants.map(this.showParticipants)

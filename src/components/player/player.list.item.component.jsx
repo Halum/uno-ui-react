@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {ArrowDownIcon, ArrowUpIcon, StopIcon} from 'react-octicons';
-import {Bounce} from 'react-motions';
+import {Shake} from 'react-motions';
 import Button from './../button.component';
 import get from 'lodash.get';
 import { playerReady } from './../../actions/initialAction';
@@ -33,7 +33,7 @@ class PlayerListItem extends Component {
     console.log('status', this.props.status)
     return (
 
-      <Bounce duration={isMeCurrentPlayer ? 3 : 0} infinite={isMeCurrentPlayer ? true : false}>
+      <Shake duration={isMeCurrentPlayer ? 4 : 0} infinite={isMeCurrentPlayer ? true : false}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' + (isMeCurrentPlayer ? 'active' : '')}>
           <div>
             <span className={this.props.playing || this.props.status === 'waiting' ? 'visible' : 'invisible'}>
@@ -54,7 +54,7 @@ class PlayerListItem extends Component {
             <span className="badge badge-dark badge-pill">{this.props.cardCount}</span>
           </div>
         </li>
-      </Bounce>
+      </Shake>
     );
   }
 };

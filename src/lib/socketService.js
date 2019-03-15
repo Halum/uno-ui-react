@@ -29,6 +29,10 @@ class SocketService {
     this.socket.emit('take-card', playerId);
   }
 
+  timesUp(playerId) {
+    this.socket.emit('times-up', playerId);
+  }
+
   playCard(playerId, card) {
     const data = {playerId, card};
     
