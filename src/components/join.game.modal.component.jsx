@@ -10,7 +10,7 @@ class JoinGameModalComponent extends Component {
     super(props);
     this.state = {
       show: this.props.ui.showJoinGameModal,
-      gameId: '12345',
+      gameId: '',
       playerName: ''
     };
 
@@ -29,6 +29,17 @@ class JoinGameModalComponent extends Component {
     const {gameId, playerName} = this.state;
     this.props.joinGame({gameId, playerName});
     this.props.toggleJoinGameModal();
+  }
+
+  shouldComponentUpdate(nextProps) {
+    // this might lead to nested update calls
+    const gameId = nextProps.game.gameId;
+    if(this.state.gameId === '') {
+      this.setState({gameId});
+      return false;
+    }
+    
+    return true;
   }
 
   static getDerivedStateFromProps(props, state) {
