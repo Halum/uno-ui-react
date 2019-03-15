@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import {Provider} from 'react-redux';
 import store from './store';
 import './App.css';
+import ReactGA from 'react-ga';
 
 import Header from './components/header.component';
 import Page from './components/page.component';
@@ -21,3 +22,9 @@ class App extends Component {
 }
 
 export default App;
+
+
+function initializeReactGA() {
+  ReactGA.initialize('UA-26734040-4');
+  ReactGA.pageview('/homepage');
+}
