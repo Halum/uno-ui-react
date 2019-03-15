@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import spriteMap from '../../lib/card.sprite.map';
 import largeSpriteSheet from './../../images/spritesheet_uno.png';
 import socketService from './../../lib/socketService';
+import {Wobble} from 'react-motions';
+import Button from './../button.component';
 
 class Card extends Component {
   constructor(props) {
@@ -14,7 +16,9 @@ class Card extends Component {
     const {x, y, width, height} = spriteData;
 
     this.spriteData = {x, y, width, height};
+
     this.onCardClick = this.onCardClick.bind(this);
+    this.onSkipClick = this.onSkipClick.bind(this);
   }
 
   onCardClick() {
@@ -33,10 +37,23 @@ class Card extends Component {
     else if(this.props.takeAble) return socketService.takeCard(playerId);
   }
 
+  onSkipClick(e) {
+    e.stopPropagation();
+    
+    const {playerId} = this.props.player;
+    socketService.skipCard(playerId);
+  }
+
   render() {
+    const {skipAble} = this.props;
+
     return (
       <div className={'d-inline-block pl-2 ' + this.props.style} onClick={this.onCardClick}>
-        <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
+        <Wobble duration={skipAble ? 10 : 0} infinite={skipAble ? true : false}>
+          <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
+
+          {skipAble ? <Button content="Skip" onClick={this.onSkipClick} className="btn-warning btn-sm col"></Button> : ''}
+        </Wobble>
       </div>
     );
   }
@@ -44,7 +61,8 @@ class Card extends Component {
 
 Card.defaultProps = {
   takeAble: false,
-  playAble: false
+  playAble: false,
+  skipAble: false
 }
 
 Card.propTypes = {
@@ -53,7 +71,8 @@ Card.propTypes = {
   takeAble: PropTypes.bool,
   playAble: PropTypes.bool,
   onWildCard: PropTypes.func,
-  style: PropTypes.string
+  style: PropTypes.string,
+  skipAble: PropTypes.bool
 };
 
 const mapStoreToProps = store => {
