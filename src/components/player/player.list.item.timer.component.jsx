@@ -18,7 +18,7 @@ class PlayerListItemTimer extends Component {
   }
 
   componentDidMount() {
-    this.timer = setInterval(this.updateTimerView, 100);
+    this.timer = setInterval(this.updateTimerView, 1500);
   }
 
   componentWillUnmount() {
@@ -32,15 +32,13 @@ class PlayerListItemTimer extends Component {
     if(turn) {
       // player has the turn, start timer from 100 and 10 for adjustment
       // start the timer only when countdown is not running
-      if(!countDown && !this.timerRunning) countDown = 110;
+      if(!countDown && !this.timerRunning) countDown = 10;
       // timer running, reduce timer
       else countDown--;
 
       this.timerRunning = true;
 
-      console.log(countDown);
-
-      if(countDown < 0 && !this.penaltySubmitted) {
+      if(!countDown && !this.penaltySubmitted) {
         // timer is up, take a card for penalty
         // submit penalty only once
         socketService.timesUp(playerId);
@@ -59,7 +57,7 @@ class PlayerListItemTimer extends Component {
     return (
       <li className={'list-group-item'}>
         <div className="progress" style={{height: "5px"}}>
-          <div className="progress-bar bg-info" role="progressbar" style={{width: `${this.state.countDown}%`}} aria-valuemin="0" aria-valuemax="100"></div>
+          <div className="progress-bar bg-info" role="progressbar" style={{width: `${this.state.countDown * 10}%`}} aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </li>
     );
