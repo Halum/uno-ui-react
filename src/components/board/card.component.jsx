@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import spriteMap from '../../lib/card.sprite.map';
 import largeSpriteSheet from './../../images/spritesheet_uno.png';
 import socketService from './../../lib/socketService';
+import {Wobble} from 'react-motions';
 import Button from './../button.component';
 
 class Card extends Component {
@@ -35,10 +36,15 @@ class Card extends Component {
   }
 
   render() {
+    const {skipAble} = this.props;
+
     return (
       <div className={'d-inline-block pl-2 ' + this.props.style} onClick={this.onCardClick}>
-        <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
-        {this.props.skipAble ? <Button content="Skip" onClick={this.onJoinClick} className="btn-warning btn-sm col"></Button> : ''}
+        <Wobble duration={skipAble ? 10 : 0} infinite={skipAble ? true : false}>
+          <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
+
+          {skipAble ? <Button content="Skip" onClick={this.onJoinClick} className="btn-warning btn-sm col"></Button> : ''}
+        </Wobble>
       </div>
     );
   }
