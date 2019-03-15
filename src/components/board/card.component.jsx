@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import spriteMap from '../../lib/card.sprite.map';
 import largeSpriteSheet from './../../images/spritesheet_uno.png';
 import socketService from './../../lib/socketService';
+import Button from './../button.component';
 
 class Card extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Card extends Component {
     return (
       <div className={'d-inline-block pl-2 ' + this.props.style} onClick={this.onCardClick}>
         <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
+        {this.props.skipAble ? <Button content="Skip" onClick={this.onJoinClick} className="btn-warning btn-sm col"></Button> : ''}
       </div>
     );
   }
@@ -44,7 +46,8 @@ class Card extends Component {
 
 Card.defaultProps = {
   takeAble: false,
-  playAble: false
+  playAble: false,
+  skipAble: false
 }
 
 Card.propTypes = {
@@ -53,7 +56,8 @@ Card.propTypes = {
   takeAble: PropTypes.bool,
   playAble: PropTypes.bool,
   onWildCard: PropTypes.func,
-  style: PropTypes.string
+  style: PropTypes.string,
+  skipAble: PropTypes.bool
 };
 
 const mapStoreToProps = store => {
