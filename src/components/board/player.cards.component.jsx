@@ -32,8 +32,12 @@ class PlayerCards extends Component {
 
   showCard(card, index) {
     const {color, symbol} = card;
+    const {cards, takenCard} = this.props.player;
     const key = color + symbol + index;
-    const skipAble = findIndex(this.props.player.cards, this.props.player.takenCard) === index;
+    // lodash findIndex return 0 for null value
+    const skipAble = takenCard 
+      ? findIndex(cards, takenCard) === index 
+      : false;
 
     return <Card {...{color, symbol, key, skipAble}} playAble onWildCard={this.onWildCard}></Card>
   }

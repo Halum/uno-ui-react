@@ -16,7 +16,9 @@ class Card extends Component {
     const {x, y, width, height} = spriteData;
 
     this.spriteData = {x, y, width, height};
+
     this.onCardClick = this.onCardClick.bind(this);
+    this.onSkipClick = this.onSkipClick.bind(this);
   }
 
   onCardClick() {
@@ -35,6 +37,13 @@ class Card extends Component {
     else if(this.props.takeAble) return socketService.takeCard(playerId);
   }
 
+  onSkipClick(e) {
+    e.stopPropagation();
+    
+    const {playerId} = this.props.player;
+    socketService.skipCard(playerId);
+  }
+
   render() {
     const {skipAble} = this.props;
 
@@ -43,7 +52,7 @@ class Card extends Component {
         <Wobble duration={skipAble ? 10 : 0} infinite={skipAble ? true : false}>
           <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
 
-          {skipAble ? <Button content="Skip" onClick={this.onJoinClick} className="btn-warning btn-sm col"></Button> : ''}
+          {skipAble ? <Button content="Skip" onClick={this.onSkipClick} className="btn-warning btn-sm col"></Button> : ''}
         </Wobble>
       </div>
     );
