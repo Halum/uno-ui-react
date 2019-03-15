@@ -34,6 +34,10 @@ class SocketService {
     
     this.socket.emit('play-card', data);
   }
+
+  skipCard(playerId) {
+    this.socket.emit('skip-card', playerId);
+  }
 }
 
 export default new SocketService();

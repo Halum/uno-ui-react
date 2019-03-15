@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './card.component';
-import ColorChooser from './../modal/color.chooser.modal.component';
+import ColorChooserModal from './../modal/color.chooser.modal.component';
+import findIndex from 'lodash.findindex';
 
 class PlayerCards extends Component {
   constructor(props) {
@@ -31,9 +32,14 @@ class PlayerCards extends Component {
 
   showCard(card, index) {
     const {color, symbol} = card;
+    const {cards, takenCard} = this.props.player;
     const key = color + symbol + index;
+    // lodash findIndex return 0 for null value
+    const skipAble = takenCard 
+      ? findIndex(cards, takenCard) === index 
+      : false;
 
-    return <Card {...{color, symbol, key}} playAble onWildCard={this.onWildCard}></Card>
+    return <Card {...{color, symbol, key, skipAble}} playAble onWildCard={this.onWildCard}></Card>
   }
 
   render() {
@@ -44,7 +50,7 @@ class PlayerCards extends Component {
           ? this.props.player.cards.map(this.showCard)
           : ''
         }
-        <ColorChooser show={this.state.showColorChooser} onClose={this.onModalCloseClick} symbol={this.state.modalCardSymbol}/>
+        <ColorChooserModal show={this.state.showColorChooser} onClose={this.onModalCloseClick} symbol={this.state.modalCardSymbol}/>
       </div>
     );
   }
