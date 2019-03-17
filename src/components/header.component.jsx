@@ -29,7 +29,7 @@ class HeaderComponent extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
-          <div className="navbar-brand h1">Halum Uno <span className="blockquote-footer">{packageJson.version}</span></div>
+          <div className="navbar-brand h1">Halum Uno <small className="text-muted">&ndash; {packageJson.version}</small></div>
           <div>
             { get(this.props.player, 'status') === undefined
               ? <Button content="Join Game"
