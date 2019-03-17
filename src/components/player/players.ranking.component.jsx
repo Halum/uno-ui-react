@@ -21,7 +21,7 @@ class PlayersRankingComponent extends Component {
     return (
       <div className="card bg-light">
         <div className="card-body">
-          <h5 className="card-title">Ranking</h5>
+          <h6 className="card-title text-muted">Ranking</h6>
         </div>
         <ul className="list-group list-group-flush">
           {
