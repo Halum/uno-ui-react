@@ -41,10 +41,13 @@ class HeaderComponent extends Component {
                 </Button>
               : ''
             }
-            <Button content="Create Game" 
-              className="btn-outline-warning" wrapperClassName="pl-3"
-              onClick={this.onCreateGameClick}>
-            </Button>
+            { get(this.props.game, 'gameId') === undefined
+              ?  <Button content="Create Game" 
+                  className="btn-outline-warning" wrapperClassName="pl-3"
+                  onClick={this.onCreateGameClick}>
+                </Button>
+              : ''
+            }
           </div>
         </nav>
         <CreateGameModal id={this.createGameModalId} />
