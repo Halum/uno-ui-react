@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './button.component';
-import GameCreatedModal from './game.created.modal.component';
+import CreateGameModal from './modal/create.game.modal.component';
 import JoinGameModal from './join.game.modal.component';
 import { createNewGame } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
 import get from 'lodash.get';
 import packageJson from './../../package.json';
+import $ from 'jquery';
 
 class HeaderComponent extends Component {
   constructor(props) {
     super(props);
+
+    this.createGameModalId = 'createGameModal';
     this.state = {};
 
     this.onCreateGameClick = this.onCreateGameClick.bind(this);
@@ -18,7 +21,7 @@ class HeaderComponent extends Component {
   }
 
   onCreateGameClick() {
-    this.props.createNewGame();
+    $(`#${this.createGameModalId}`).modal('show');
   }
 
   onJoinGameClick() {
@@ -29,7 +32,7 @@ class HeaderComponent extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
-          <div className="navbar-brand h1">Halum Uno <span className="blockquote-footer">{packageJson.version}</span></div>
+          <div className="navbar-brand h1">Halum Uno <small className="text-muted">&ndash; {packageJson.version}</small></div>
           <div>
             { get(this.props.player, 'status') === undefined
               ? <Button content="Join Game"
@@ -38,13 +41,16 @@ class HeaderComponent extends Component {
                 </Button>
               : ''
             }
-            <Button content="Create Game" 
-              className="btn-outline-warning" wrapperClassName="pl-3"
-              onClick={this.onCreateGameClick}>
-            </Button>
+            { get(this.props.game, 'gameId') === undefined
+              ?  <Button content="Create Game" 
+                  className="btn-outline-warning" wrapperClassName="pl-3"
+                  onClick={this.onCreateGameClick}>
+                </Button>
+              : ''
+            }
           </div>
         </nav>
-        <GameCreatedModal></GameCreatedModal>
+        <CreateGameModal id={this.createGameModalId} />
         <JoinGameModal show={this.state.showJoinGameModal}></JoinGameModal>
       </div>
     );
