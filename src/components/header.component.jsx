@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './button.component';
-import GameCreatedModal from './game.created.modal.component';
+import CreateGameModal from './modal/create.game.modal.component';
 import JoinGameModal from './join.game.modal.component';
 import { createNewGame } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
 import get from 'lodash.get';
 import packageJson from './../../package.json';
+import $ from 'jquery';
 
 class HeaderComponent extends Component {
   constructor(props) {
     super(props);
+
+    this.createGameModalId = 'createGameModal';
     this.state = {};
 
     this.onCreateGameClick = this.onCreateGameClick.bind(this);
@@ -18,7 +21,7 @@ class HeaderComponent extends Component {
   }
 
   onCreateGameClick() {
-    this.props.createNewGame();
+    $(`#${this.createGameModalId}`).modal('show');
   }
 
   onJoinGameClick() {
@@ -44,7 +47,7 @@ class HeaderComponent extends Component {
             </Button>
           </div>
         </nav>
-        <GameCreatedModal></GameCreatedModal>
+        <CreateGameModal id={this.createGameModalId} />
         <JoinGameModal show={this.state.showJoinGameModal}></JoinGameModal>
       </div>
     );
