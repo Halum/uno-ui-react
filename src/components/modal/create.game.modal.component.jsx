@@ -37,16 +37,23 @@ class CreateGameModalComponent extends Component {
 
     if(gameId) return (<>Game ID: {gameId}</>)
     else return (
-      <form>
+      <>
         <div className="form-group row">
           <div className="col">
             <input type="text" className="form-control" onChange={this.onInputChange}
               name="playerName" placeholder="Your Name" value={this.state.playerName}/>
           </div>
         </div>
+
+        <div class="form-group form-check">
+          <input class="form-check-input" type="checkbox" />
+          <label class="form-check-label">
+            Randomize Player
+          </label>
+        </div>
         <Button content="Create" onClick={this.onCreateClick} 
           className="btn-success col"></Button>
-      </form>
+      </>
     );
   }
 
