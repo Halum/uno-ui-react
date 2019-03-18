@@ -7,7 +7,10 @@ import {createNewGame, joinGame} from './../../actions/initialAction';
 class CreateGameModalComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {playerName: ''};
+    this.state = {
+      playerName: '',
+      randomizePlayer: false
+    };
 
     this.onCreateClick = this.onCreateClick.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
@@ -27,7 +30,7 @@ class CreateGameModalComponent extends Component {
 
   onInputChange(e) {
     const property = e.target.name;
-    const value = e.target.value;
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     
     this.setState({[property]: value});
   }
@@ -45,9 +48,10 @@ class CreateGameModalComponent extends Component {
           </div>
         </div>
 
-        <div class="form-group form-check">
-          <input class="form-check-input" type="checkbox" />
-          <label class="form-check-label">
+        <div className="form-group form-check">
+          <input className="form-check-input" type="checkbox" onChange={this.onInputChange} 
+            name="randomizePlayer" checked={this.state.randomizePlayer}/>
+          <label className="form-check-label">
             Randomize Player
           </label>
         </div>
