@@ -31,17 +31,6 @@ class JoinGameModalComponent extends Component {
     this.props.toggleJoinGameModal();
   }
 
-  shouldComponentUpdate(nextProps) {
-    // this might lead to nested update calls
-    const gameId = nextProps.game.gameId;
-    if(this.state.gameId === '') {
-      this.setState({gameId});
-      return false;
-    }
-    
-    return true;
-  }
-
   static getDerivedStateFromProps(props, state) {
     const show = props.ui.showJoinGameModal;
     const action = show ? 'show' : 'hide';
