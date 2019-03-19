@@ -11,7 +11,7 @@ class UnoCallerComponent extends Component {
   }
 
   onButtonClick() {
-    const playerId = this.props.player;
+    const {playerId} = this.props.player;
 
     if(playerId) {
       socketService.callUno(playerId);
@@ -21,7 +21,7 @@ class UnoCallerComponent extends Component {
   render() {
     return (
       <div className="d-flex justify-content-center align-items-center">
-          <Button content="UNO" className="btn-success" wrapperClassName="pt-3"/>
+          <Button content="UNO" onClick={this.onButtonClick} className="btn-success" wrapperClassName="pt-3"/>
       </div>
     );
   }
