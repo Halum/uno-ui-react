@@ -1,14 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Board from './board/board.component';
 import Players from './player/players.component';
 import PlayersRanking from './player/players.ranking.component';
 import UnoCaller from './uno.caller.component';
+import get from 'lodash.get';
 
-const Page = props => (
+const PageComponent = props => (
   <div className="container-fluid d-flex h-100 flex-column">
     <div className="row flex-fill">
       <div className="col-9 bg-secondary card pb-3">
-        <UnoCaller/>
+        {
+          get(props.game, 'status') === 'running'
+            ? <UnoCaller/>
+            : ''
+        }
         <Board/>
       </div>
       <div className="col-3">
@@ -25,4 +31,10 @@ const Page = props => (
   </div>
 );
 
-export default Page;
+const mapStoreToProps = store => {
+  return {
+    game: store.initializer.game
+  };
+};
+
+export default connect(mapStoreToProps)(PageComponent);
