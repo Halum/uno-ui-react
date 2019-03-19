@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import $ from 'jquery';
-import {joinGame} from './../actions/initialAction';
-import Button from './button.component';
-import { toggleJoinGameModal } from './../actions/uiAction';
+import {joinGame} from '../../actions/initialAction';
+import Button from '../button.component';
+import { toggleJoinGameModal } from '../../actions/uiAction';
 
 class JoinGameModalComponent extends Component {
   constructor(props) {

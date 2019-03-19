@@ -16,21 +16,15 @@ class SocketService {
   }
 
   onGameUpdate(gameId, callback) {
-    // it seems not needed
     this.socket && this.socket.on(gameId, callback);
   }
 
   onPlayerUpdate(playerId, callback) {
-    console.log('update')
     this.socket && this.socket.on(playerId, callback);
   }
 
-  takeCard(playerId) {
-    this.socket.emit('take-card', playerId);
-  }
-
-  timesUp(playerId) {
-    this.socket.emit('times-up', playerId);
+  callUno(playerId) {
+    this.socket.emit('call-uno', playerId);
   }
 
   playCard(playerId, card) {
@@ -41,6 +35,14 @@ class SocketService {
 
   skipCard(playerId) {
     this.socket.emit('skip-card', playerId);
+  }
+
+  takeCard(playerId) {
+    this.socket.emit('take-card', playerId);
+  }
+
+  timesUp(playerId) {
+    this.socket.emit('times-up', playerId);
   }
 }
 

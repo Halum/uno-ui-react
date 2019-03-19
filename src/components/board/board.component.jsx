@@ -26,7 +26,7 @@ class BoardComponent extends Component {
   render() {
     return (
       <div className="row h-100">
-        <div className="col-12 h-50 pb-3 d-flex justify-content-center align-items-center">
+        <div className="col-12 h-30 pb-3 d-flex justify-content-center align-items-center">
           <BoardCards/>
         </div>
         <div className="col-12 h-50 pb-3 d-flex justify-content-center">

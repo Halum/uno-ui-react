@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './button.component';
 import CreateGameModal from './modal/create.game.modal.component';
-import JoinGameModal from './join.game.modal.component';
+import JoinGameModal from './modal/join.game.modal.component';
 import { createNewGame } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
 import get from 'lodash.get';
