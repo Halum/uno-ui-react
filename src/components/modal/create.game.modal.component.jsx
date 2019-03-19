@@ -7,7 +7,10 @@ import {createNewGame, joinGame} from './../../actions/initialAction';
 class CreateGameModalComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {playerName: ''};
+    this.state = {
+      playerName: '',
+      randomizePlayers: false
+    };
 
     this.onCreateClick = this.onCreateClick.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
@@ -16,7 +19,9 @@ class CreateGameModalComponent extends Component {
   }
 
   onCreateClick() {
-    this.props.createNewGame()
+    const {randomizePlayers} = this.state;
+
+    this.props.createNewGame({randomizePlayers})
       .then(() => {
         const {gameId} = this.props.game;
         const {playerName} = this.state;
@@ -27,7 +32,7 @@ class CreateGameModalComponent extends Component {
 
   onInputChange(e) {
     const property = e.target.name;
-    const value = e.target.value;
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     
     this.setState({[property]: value});
   }
@@ -37,16 +42,24 @@ class CreateGameModalComponent extends Component {
 
     if(gameId) return (<>Game ID: {gameId}</>)
     else return (
-      <form>
+      <>
         <div className="form-group row">
           <div className="col">
             <input type="text" className="form-control" onChange={this.onInputChange}
               name="playerName" placeholder="Your Name" value={this.state.playerName}/>
           </div>
         </div>
+
+        <div className="form-group form-check">
+          <input className="form-check-input" type="checkbox" onChange={this.onInputChange} 
+            name="randomizePlayers" checked={this.state.randomizePlayers}/>
+          <label className="form-check-label">
+            Randomize Player
+          </label>
+        </div>
         <Button content="Create" onClick={this.onCreateClick} 
           className="btn-success col"></Button>
-      </form>
+      </>
     );
   }
 
