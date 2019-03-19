@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from './button.component';
+import socketService from './../lib/socketService';
 
 class UnoCallerComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onButtonClick() {
+    const playerId = this.props.player;
+
+    if(playerId) {
+      socketService.callUno(playerId);
+    }
+  }
+
   render() {
     return (
       <div className="d-flex justify-content-center align-items-center">
@@ -14,7 +29,6 @@ class UnoCallerComponent extends Component {
 
 const mapStoreToProps = store => {
   return {
-    game: store.initializer.game,
     player: store.initializer.player
   };
 };
