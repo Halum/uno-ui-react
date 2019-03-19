@@ -9,7 +9,7 @@ class CreateGameModalComponent extends Component {
     super(props);
     this.state = {
       playerName: '',
-      randomizePlayer: false
+      randomizePlayers: false
     };
 
     this.onCreateClick = this.onCreateClick.bind(this);
@@ -19,7 +19,9 @@ class CreateGameModalComponent extends Component {
   }
 
   onCreateClick() {
-    this.props.createNewGame()
+    const {randomizePlayers} = this.state;
+
+    this.props.createNewGame({randomizePlayers})
       .then(() => {
         const {gameId} = this.props.game;
         const {playerName} = this.state;
@@ -50,7 +52,7 @@ class CreateGameModalComponent extends Component {
 
         <div className="form-group form-check">
           <input className="form-check-input" type="checkbox" onChange={this.onInputChange} 
-            name="randomizePlayer" checked={this.state.randomizePlayer}/>
+            name="randomizePlayers" checked={this.state.randomizePlayers}/>
           <label className="form-check-label">
             Randomize Player
           </label>

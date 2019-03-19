@@ -4,10 +4,10 @@ import socketService from './../lib/socketService';
 
 const url = `/uno`;
 
-export const createNewGame = () => dispatch => {
+export const createNewGame = (payload) => dispatch => {
   const reqUrl = `${url}/new`;
 
-  return post(reqUrl)
+  return post(reqUrl, payload)
     .then(data => 
       dispatch({
         type: NEW_GAME,
