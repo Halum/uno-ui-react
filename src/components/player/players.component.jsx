@@ -11,10 +11,10 @@ class PlayersComponent extends Component {
   }
 
   showParticipants(participant, index) {
-    const {playerName, cardCount, playing, status} = participant;
+    const {playerName, cardCount, playing, status, uno} = participant;
     const key = playerName + index;
     
-    return <PlayerListItem {...{playerName, cardCount, playing, status, key}}/>
+    return <PlayerListItem {...{playerName, cardCount, playing, status, uno, key}}/>
   }
 
   render() {

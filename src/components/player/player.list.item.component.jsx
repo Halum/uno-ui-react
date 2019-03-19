@@ -5,12 +5,16 @@ import {Shake} from 'react-motions';
 import Button from './../button.component';
 import get from 'lodash.get';
 import { playerReady } from './../../actions/initialAction';
+import unoMp3 from './../../sounds/uno.mp3';
 
 class PlayerListItem extends Component {
   constructor(props) {
     super(props);
 
+    this.unoPlayed = false;
+    this.unoSound = new Audio(unoMp3);
     this.onReadyClick = this.onReadyClick.bind(this);
+    this.playUnoIfRequired = this.playUnoIfRequired.bind(this);
   }
 
   getPlayerIcon() {
@@ -27,12 +31,20 @@ class PlayerListItem extends Component {
     this.props.playerReady({gameId, playerId});
   }
 
+  playUnoIfRequired() {
+    if(this.props.uno && !this.unoPlayed) {
+      this.unoSound.play();
+      this.unoPlayed = true;
+    } else if(!this.props.uno) {
+      this.unoPlayed = false;
+    }
+  }
+
   render() {
     const isMeCurrentPlayer = this.props.playing && this.props.player.turn;
-    
-    console.log('status', this.props.status)
-    return (
+    this.playUnoIfRequired();
 
+    return (
       <Shake duration={isMeCurrentPlayer ? 4 : 0} infinite={isMeCurrentPlayer ? true : false}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' + (isMeCurrentPlayer ? 'active' : '')}>
           <div>
