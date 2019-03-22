@@ -25,12 +25,12 @@ class CreateGameModalComponent extends Component {
     const {randomizePlayers} = this.state;
 
     this.props.createNewGame({randomizePlayers})
-      // .then(() => {
-      //   const {gameId} = this.props.game;
-      //   const {playerName} = this.state;
+      .then(() => {
+        const {gameId} = this.props.game;
+        const {playerName} = this.state;
 
-      //   return this.props.joinGame({gameId, playerName});
-      // });
+        return this.props.joinGame({gameId, playerName});
+      });
   }
 
   onInputChange(e) {
@@ -41,7 +41,7 @@ class CreateGameModalComponent extends Component {
   }
 
   getModalBody() {
-    const gameId = 'sadfadsfjhydffdjkfjf';
+    const {gameId} = this.props.game;
 
     if(gameId) return (
       <>
