@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Button from './../button.component';
 import PropTypes from 'prop-types';
 import {createNewGame, joinGame} from './../../actions/initialAction';
+import {ClippyIcon} from 'react-octicons';
 
 class CreateGameModalComponent extends Component {
   constructor(props) {
@@ -40,7 +41,20 @@ class CreateGameModalComponent extends Component {
   getModalBody() {
     const {gameId} = this.props.game;
 
-    if(gameId) return (<>Game ID: {gameId}</>)
+    if(gameId) return (
+      <>
+        <div class="form-group row">
+          <label for="staticGameId" class="col-sm-2 col-form-label font-weight-bold text-nowrap">Game ID :</label>
+          <span class="col-sm-8">
+            <input type="text" class="form-control" id="staticGameId" value={gameId} readOnly/>
+          </span>
+          <span class="col-sm-2">
+            <button type="button" class="btn btn-info" title="Copy">
+              <ClippyIcon/>
+            </button>
+          </span>
+        </div>
+      </>)
     else return (
       <>
         <div className="form-group row">
