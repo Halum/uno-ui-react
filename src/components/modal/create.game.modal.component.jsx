@@ -4,13 +4,15 @@ import Button from './../button.component';
 import PropTypes from 'prop-types';
 import {createNewGame, joinGame} from './../../actions/initialAction';
 import {ClippyIcon} from 'react-octicons';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 class CreateGameModalComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       playerName: '',
-      randomizePlayers: false
+      randomizePlayers: false,
+      copyTitle: 'Copy'
     };
 
     this.onCreateClick = this.onCreateClick.bind(this);
@@ -23,12 +25,12 @@ class CreateGameModalComponent extends Component {
     const {randomizePlayers} = this.state;
 
     this.props.createNewGame({randomizePlayers})
-      .then(() => {
-        const {gameId} = this.props.game;
-        const {playerName} = this.state;
+      // .then(() => {
+      //   const {gameId} = this.props.game;
+      //   const {playerName} = this.state;
 
-        return this.props.joinGame({gameId, playerName});
-      });
+      //   return this.props.joinGame({gameId, playerName});
+      // });
   }
 
   onInputChange(e) {
@@ -39,7 +41,7 @@ class CreateGameModalComponent extends Component {
   }
 
   getModalBody() {
-    const {gameId} = this.props.game;
+    const gameId = 'sadfadsfjhydffdjkfjf';
 
     if(gameId) return (
       <>
@@ -49,9 +51,11 @@ class CreateGameModalComponent extends Component {
             <input type="text" class="form-control" id="staticGameId" value={gameId} readOnly/>
           </span>
           <span class="col-sm-2">
-            <button type="button" class="btn btn-info" title="Copy">
-              <ClippyIcon/>
-            </button>
+            <CopyToClipboard text={gameId} onCopy={() => {this.setState({copyTitle:'Copied'})}}>
+              <button type="button" class="btn btn-info" title={this.state.copyTitle}>
+                <ClippyIcon/>
+              </button>
+            </CopyToClipboard>
           </span>
         </div>
       </>)

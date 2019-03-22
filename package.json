@@ -1,6 +1,6 @@
 {
   "name": "uno-ui-react",
-  "version": "0.5.2-alpha",
+  "version": "0.6.0-alpha",
   "private": true,
   "proxy": "http://localhost:3500/",
   "scripts": {
@@ -19,6 +19,7 @@
     "popper.js": "^1.14.7",
     "prop-type": "0.0.1",
     "react": "^16.8.3",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.3",
     "react-ga": "^2.5.7",
     "react-motions": "^0.3.0",
