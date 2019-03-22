@@ -46,7 +46,7 @@ class CreateGameModalComponent extends Component {
     if(gameId) return (
       <>
         <div class="form-group row">
-          <label for="staticGameId" class="col-sm-2 col-form-label font-weight-bold text-nowrap">Game ID :</label>
+          <label for="staticGameId" class="col-sm-2 col-form-label font-weight-bold text-nowrap">Game ID:</label>
           <span class="col-sm-8">
             <input type="text" class="form-control" id="staticGameId" value={gameId} readOnly/>
           </span>
