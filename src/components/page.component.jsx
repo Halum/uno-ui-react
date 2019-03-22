@@ -9,7 +9,7 @@ import get from 'lodash.get';
 const PageComponent = props => (
   <div className="container-fluid d-flex h-100 flex-column">
     <div className="row flex-fill">
-      <div className="col-9 bg-secondary card pb-3">
+      <div className="col-9 bg-secondary pb-3">
         {
           get(props.game, 'status') === 'running'
             ? <UnoCaller/>
