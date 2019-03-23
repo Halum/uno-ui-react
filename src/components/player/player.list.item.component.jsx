@@ -57,11 +57,16 @@ class PlayerListItem extends Component {
             { // show the ready button only when player status is 'waiting' and
               // participant name is same as player name
               get(this.props.player, 'status') === 'waiting' && get(this.props.player, 'name') === this.props.playerName
-              ? <Button content="Ready"
-                  className="btn-outline-success mr-5" wrapperClassName="pl-3"
-                  onClick={this.onReadyClick}>
-                </Button>
-              : ''
+                ? <Button content="Ready"
+                    className="btn-outline-success mr-5" wrapperClassName="pl-3"
+                    onClick={this.onReadyClick}>
+                  </Button>
+                : ''
+            }
+            {
+              this.props.uno
+                ? <span className="badge badge-warning mr-3">UNO</span>
+                : ''
             }
             <span className="badge badge-dark badge-pill">{this.props.cardCount}</span>
           </div>
