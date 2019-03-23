@@ -43,7 +43,7 @@ class JoinGameModalComponent extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <div className="modal fade" id="joinGameModal" tabIndex="-1" role="dialog" aria-labelledby="joinGameModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -64,6 +64,7 @@ class JoinGameModalComponent extends Component {
                   <div className="form-group row">
                     <div className="col">
                       <input type="text" className="form-control" onChange={this.onInputChange}
+                        onKeyDown={e => e.keyCode === 13 ? this.onJoinClick() : ''}
                         name="playerName" placeholder="Your Name" value={this.state.playerName}/>
                     </div>
                   </div>
@@ -74,7 +75,7 @@ class JoinGameModalComponent extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 };

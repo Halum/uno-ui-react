@@ -1,6 +1,6 @@
 {
   "name": "uno-ui-react",
-  "version": "0.6.2-alpha",
+  "version": "0.6.5-alpha",
   "private": true,
   "proxy": "http://localhost:3500/",
   "scripts": {
