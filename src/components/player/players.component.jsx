@@ -22,7 +22,7 @@ class PlayersComponent extends Component {
       <div className="card bg-light">
         <div className="card-body">
           <h5 className="card-title ">Players</h5>
-          <h6 class="card-subtitle text-muted">Game: &nbsp;{this.props.game.gameId}</h6>
+          <h6 className="card-subtitle text-muted">Game: &nbsp;{this.props.game.gameId}</h6>
         </div>
         <ul className="list-group list-group-flush">
           <PlayerListItemTimer/>

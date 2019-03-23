@@ -45,14 +45,14 @@ class CreateGameModalComponent extends Component {
 
     if(gameId) return (
       <>
-        <div class="form-group row">
-          <label for="staticGameId" class="col-sm-2 col-form-label font-weight-bold text-nowrap">Game ID:</label>
-          <span class="col-sm-8">
-            <input type="text" class="form-control" id="staticGameId" value={gameId} readOnly/>
+        <div className="form-group row">
+          <label htmlFor="staticGameId" className="col-sm-2 col-form-label font-weight-bold text-nowrap">Game ID:</label>
+          <span className="col-sm-8">
+            <input type="text" className="form-control" id="staticGameId" value={gameId} readOnly/>
           </span>
-          <span class="col-sm-2">
+          <span className="col-sm-2">
             <CopyToClipboard text={gameId} onCopy={() => {this.setState({copyTitle:'Copied'})}}>
-              <button type="button" class="btn btn-info" title={this.state.copyTitle}>
+              <button type="button" className="btn btn-info" title={this.state.copyTitle}>
                 <ClippyIcon/>
               </button>
             </CopyToClipboard>
