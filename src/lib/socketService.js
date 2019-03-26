@@ -27,10 +27,8 @@ class SocketService {
     this.socket.emit('call-uno', playerId);
   }
 
-  playCard(playerId, card) {
-    const data = {playerId, card};
-    
-    this.socket.emit('play-card', data);
+  playCard(playerId, card) {    
+    this.socket.emit('play-card', {playerId, card});
   }
 
   skipCard(playerId) {
@@ -43,6 +41,10 @@ class SocketService {
 
   timesUp(playerId) {
     this.socket.emit('times-up', playerId);
+  }
+
+  viewCards(playerId, playerName) {
+    this.socket.emit('view-cards', {playerId, playerName});
   }
 }
 
