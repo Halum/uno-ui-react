@@ -13,7 +13,8 @@ class PlayerCards extends Component {
       modalCardSymbol: null
     };
 
-    this.showCard = this.showCard.bind(this);
+    this.prepareCard = this.prepareCard.bind(this);
+    this.showCards = this.showCards.bind(this);
     this.onWildCard = this.onWildCard.bind(this);
     this.onModalCloseClick = this.onModalCloseClick.bind(this);
   }
@@ -30,7 +31,7 @@ class PlayerCards extends Component {
     this.setState({showColorChooser: false});
   }
 
-  showCard(card, index) {
+  prepareCard(card, index) {
     const {color, symbol} = card;
     const {cards, takenCard} = this.props.player;
     const key = color + symbol + index;
@@ -42,14 +43,29 @@ class PlayerCards extends Component {
     return <Card {...{color, symbol, key, skipAble}} playAble onWildCard={this.onWildCard}></Card>
   }
 
+  showCards() {
+    const {participants} = this.props.game;
+    let cards = this.props.player.cards || [];
+    
+    // this player has no card, so lets find if he is spectating someone
+    if(cards.length === 0 && participants) {
+      const participantWithCards = participants.find(data => data.cards.length > 0);
+      if(participantWithCards) {
+        cards = participantWithCards.cards;
+      }
+    }
+
+    if(cards.length > 0) {
+      return cards.map(this.prepareCard);
+    }
+
+    return '';
+  }
+
   render() {
     return (
       <div>
-        { 
-          this.props.player.cards
-          ? this.props.player.cards.map(this.showCard)
-          : ''
-        }
+        {this.showCards()}
         <ColorChooserModal show={this.state.showColorChooser} onClose={this.onModalCloseClick} symbol={this.state.modalCardSymbol}/>
       </div>
     );
@@ -59,6 +75,7 @@ class PlayerCards extends Component {
 
 const mapStoreToProps = store => {
   return {
+    game: store.initializer.game,
     player: store.initializer.player
   };
 };
