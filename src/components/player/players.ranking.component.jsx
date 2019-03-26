@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PlayerListItem from './player.list.item.component';
+import PlayerRankingListItem from './player.ranking.list.item.component';
 
 class PlayersRankingComponent extends Component {
   constructor(props) {
@@ -14,14 +14,14 @@ class PlayersRankingComponent extends Component {
     const key = playerName + index;
     
     // here index is the ranking, so passing index as cardCount to show the rank
-    return <PlayerListItem playerName={playerName} cardCount={index+1} key={key}></PlayerListItem>
+    return <PlayerRankingListItem playerName={playerName} rank={index+1} key={key}/>
   }
 
   render() {
     return (
-      <div className="card bg-light">
+      <div className="card bg-info">
         <div className="card-body">
-          <h6 className="card-title text-muted">Ranking</h6>
+          <h6 className="card-title font-italic font-weight-bold">Ranking</h6>
         </div>
         <ul className="list-group list-group-flush">
           {
