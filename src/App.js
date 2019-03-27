@@ -9,6 +9,7 @@ import './App.css';
 
 import Header from './components/header.component';
 import Page from './components/page.component';
+import Notification from './components/notification.component';
 
 class App extends Component {
   constructor() {
@@ -21,8 +22,9 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Header></Header>
-        <Page></Page>
+        <Header/>
+        <Page/>
+        <Notification/>
       </Provider>
     );
   }

@@ -19,6 +19,7 @@
     "popper.js": "^1.14.7",
     "prop-type": "0.0.1",
     "react": "^16.8.3",
+    "react-bs-notifier": "^5.0.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.3",
     "react-ga": "^2.5.7",
