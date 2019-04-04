@@ -19,10 +19,10 @@ const PageComponent = props => (
       </div>
       <div className="col-3">
         <div className="row h-100">
-          <div className="col-12 h-50 pb-3">
+          <div className="col-12 pb-3">
             <Players/>
           </div>
-          <div className="col-12 h-50 pb-3">
+          <div className="col-12 h-30 pb-3">
             <PlayersRanking/>
           </div>
         </div>
