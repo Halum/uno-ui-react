@@ -18,7 +18,7 @@ class NotificationComponent extends React.Component {
     if(this.props.error !== null) {
       this.setState(state => {
         return {alerts: [...state.alerts,
-          {id: (new Date()).getTime(), type:'danger', message: this.props.error}
+          {id: (new Date()).getTime(), headline: 'Ooops!', type:'danger', message: this.props.error}
         ]};
       });
       this.props.resetError();
