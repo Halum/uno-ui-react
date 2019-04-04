@@ -1,19 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {AlertList} from "react-bs-notifier";
+import {resetError} from './../actions/initialAction';
 
 class NotificationComponent extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      alerts: [
-        {id:1, type:'info', headline:'Hello', message:'world'},
-        // ,
-      ]
+      alerts: []
     }
 
     this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  componentDidUpdate() {
+    if(this.props.error !== null) {
+      this.setState(state => {
+        return {alerts: [...state.alerts,
+          {id: (new Date()).getTime(), type:'danger', message: this.props.error}
+        ]};
+      });
+      this.props.resetError();
+    }
   }
 
   onDismiss(alert) {
@@ -24,7 +33,7 @@ class NotificationComponent extends React.Component {
 
   render() {
     return (
-      <AlertList alerts={this.state.alerts} position="bottom-right" timeout={30000} onDismiss={this.onDismiss}/>
+      <AlertList alerts={this.state.alerts} position="bottom-left" timeout={5000} onDismiss={this.onDismiss}/>
     );
   }
 };
@@ -32,8 +41,9 @@ class NotificationComponent extends React.Component {
 const mapStoreToProps = store => {
   return {
     game: store.initializer.game,
-    player: store.initializer.player
+    player: store.initializer.player,
+    error: store.initializer.error
   };
 };
 
-export default connect(mapStoreToProps)(NotificationComponent);
+export default connect(mapStoreToProps, {resetError})(NotificationComponent);
