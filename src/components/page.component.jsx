@@ -23,7 +23,10 @@ const PageComponent = props => (
             <Players/>
           </div>
           <div className="col-12 h-30 pb-3">
-            <PlayersRanking/>
+            {props.game.ranking && props.game.ranking.length > 0
+              ? <PlayersRanking/>
+              : ''
+            }
           </div>
         </div>
       </div>
