@@ -50,7 +50,9 @@ class PlayerListItemTimer extends Component {
       this.penaltySubmitted = false;
     }
     
-    this.setState({countDown});
+    if(countDown !== this.state.countDown) {
+      this.setState({countDown});
+    }
   }
 
   render() {

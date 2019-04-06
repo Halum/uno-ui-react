@@ -49,7 +49,7 @@ class PlayerCards extends Component {
     
     // this player has no card, so lets find if he is spectating someone
     if(cards.length === 0 && participants) {
-      const participantWithCards = participants.find(data => data.cards.length > 0);
+      const participantWithCards = participants.find(data => data.cards && data.cards.length > 0);
       if(participantWithCards) {
         cards = participantWithCards.cards;
       }

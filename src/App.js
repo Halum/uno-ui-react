@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import 'font-awesome/css/font-awesome.min.css';
 import {Provider} from 'react-redux';
 import store from './store';
 import './App.css';
 
 import Header from './components/header.component';
 import Page from './components/page.component';
+import Notification from './components/notification.component';
 
 class App extends Component {
   constructor() {
@@ -21,8 +23,9 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Header></Header>
-        <Page></Page>
+        <Header/>
+        <Page/>
+        <Notification/>
       </Provider>
     );
   }

@@ -1,6 +1,6 @@
 {
   "name": "uno-ui-react",
-  "version": "0.7.0-alpha",
+  "version": "0.8.2-alpha",
   "private": true,
   "proxy": "http://localhost:3500/",
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "lodash.findindex": "^4.6.0",
     "lodash.get": "^4.4.2",
@@ -19,6 +20,7 @@
     "popper.js": "^1.14.7",
     "prop-type": "0.0.1",
     "react": "^16.8.3",
+    "react-bs-notifier": "^5.0.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.3",
     "react-ga": "^2.5.7",
