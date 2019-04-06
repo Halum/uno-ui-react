@@ -60,9 +60,9 @@ const CreateGameModalComponent = props => {
         </div>
 
         <div className="form-group form-check">
-          <input className="form-check-input" type="checkbox" onChange={e => setRandomizePlayers(e.target.checked)} 
-            name="randomizePlayers" checked={randomizePlayers}/>
           <label className="form-check-label">
+            <input className="form-check-input" type="checkbox" onChange={e => setRandomizePlayers(e.target.checked)} 
+              name="randomizePlayers" checked={randomizePlayers}/>
             Randomize Player
           </label>
         </div>
