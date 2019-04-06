@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import {Sprite} from 'react-spritesheet';
 import PropTypes from 'prop-types';
+
 import spriteMap from '../../lib/card.sprite.map';
+import utils from './../../lib/utils';
+
 import largeSpriteSheet from './../../images/spritesheet_uno.png';
 import socketService from './../../lib/socketService';
 import {Wobble} from 'react-motions';
@@ -13,9 +17,8 @@ class Card extends Component {
     super(props);
 
     const spriteData = spriteMap[props.color + props.symbol];
-    const {x, y, width, height} = spriteData;
 
-    this.spriteData = {x, y, width, height};
+    this.spriteData = this.resizeCardOnScreenSize(spriteData);
 
     this.onCardClick = this.onCardClick.bind(this);
     this.onSkipClick = this.onSkipClick.bind(this);
@@ -42,6 +45,24 @@ class Card extends Component {
     
     const {playerId} = this.props.player;
     socketService.skipCard(playerId);
+  }
+
+  resizeCardOnScreenSize(spriteData) {
+    let {x, y, width, height} = spriteData;
+    const multiplier = utils.screenMultiplier();
+    
+    console.log(multiplier);
+
+    x *= multiplier;
+    y *= multiplier;
+    width *= multiplier;
+    height *= multiplier;
+    const backgroundSize = {
+      width: 1871 * multiplier,
+      height: 1024 * multiplier
+    }
+
+    return {x, y, width, height, backgroundSize};
   }
 
   render() {
