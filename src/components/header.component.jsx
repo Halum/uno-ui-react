@@ -14,7 +14,6 @@ class HeaderComponent extends Component {
     super(props);
 
     this.createGameModalId = 'createGameModal';
-    this.state = {};
 
     this.onCreateGameClick = this.onCreateGameClick.bind(this);
     this.onJoinGameClick = this.onJoinGameClick.bind(this);
@@ -51,7 +50,7 @@ class HeaderComponent extends Component {
           </div>
         </nav>
         <CreateGameModal id={this.createGameModalId} />
-        <JoinGameModal show={this.state.showJoinGameModal}></JoinGameModal>
+        <JoinGameModal />
       </div>
     );
   }

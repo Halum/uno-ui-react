@@ -11,7 +11,7 @@ class PlayersComponent extends Component {
   }
 
   showParticipants(participant, index) {
-    const {playerName, cardCount, playing, status, uno, cards} = participant;
+    const {playerName, cardCount, playing, status, uno, cards=[]} = participant;
     const key = playerName + index;
     const showingCards = cards.length > 0
     
@@ -41,8 +41,9 @@ class PlayersComponent extends Component {
 
 const mapStoreToProps = store => {
   return {
-    game: store.initializer.game
+    game: store.initializer.game,
+    player: store.initializer.player
   };
 };
 
-export default connect(mapStoreToProps, null)(PlayersComponent);
+export default connect(mapStoreToProps)(PlayersComponent);
