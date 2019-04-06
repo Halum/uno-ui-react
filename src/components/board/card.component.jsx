@@ -48,21 +48,14 @@ class Card extends Component {
   }
 
   resizeCardOnScreenSize(spriteData) {
-    let {x, y, width, height} = spriteData;
     const multiplier = utils.screenMultiplier();
-    
-    console.log(multiplier);
 
-    x *= multiplier;
-    y *= multiplier;
-    width *= multiplier;
-    height *= multiplier;
     const size = {
-      width: 1871 * multiplier,
-      height: 1024 * multiplier
+      width: 1871,
+      height: 1024
     }
 
-    return {x, y, width, height, size};
+    return {...spriteData, size, multiplier};
   }
 
   render() {
