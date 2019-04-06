@@ -1,6 +1,6 @@
 {
   "name": "uno-ui-react",
-  "version": "0.8.6-alpha",
+  "version": "0.8.7-alpha",
   "private": true,
   "proxy": "http://localhost:3500/",
   "scripts": {
@@ -28,7 +28,6 @@
     "react-octicons": "^0.2.0",
     "react-redux": "^6.0.1",
     "react-scripts": "^2.1.5",
-    "react-spritesheet": "^1.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "socket.io-client": "^2.2.0"

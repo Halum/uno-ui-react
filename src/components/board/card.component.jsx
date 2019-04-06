@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Sprite} from 'react-spritesheet';
+
 import PropTypes from 'prop-types';
+
 import spriteMap from '../../lib/card.sprite.map';
+import utils from './../../lib/utils';
+
 import largeSpriteSheet from './../../images/spritesheet_uno.png';
 import socketService from './../../lib/socketService';
 import {Wobble} from 'react-motions';
 import Button from './../button.component';
+import BackgroundImage from './../background.image.component';
 
 class Card extends Component {
   constructor(props) {
     super(props);
 
     const spriteData = spriteMap[props.color + props.symbol];
-    const {x, y, width, height} = spriteData;
 
-    this.spriteData = {x, y, width, height};
+    this.spriteData = this.resizeCardOnScreenSize(spriteData);
 
     this.onCardClick = this.onCardClick.bind(this);
     this.onSkipClick = this.onSkipClick.bind(this);
@@ -44,13 +47,24 @@ class Card extends Component {
     socketService.skipCard(playerId);
   }
 
+  resizeCardOnScreenSize(spriteData) {
+    const multiplier = utils.screenMultiplier();
+
+    const size = {
+      width: 1871,
+      height: 1024
+    }
+
+    return {...spriteData, size, multiplier};
+  }
+
   render() {
     const {skipAble} = this.props;
 
     return (
       <div className={'d-inline-block pl-2 ' + this.props.style} onClick={this.onCardClick}>
         <Wobble duration={skipAble ? 10 : 0} infinite={skipAble ? true : false}>
-          <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
+          <BackgroundImage filename={largeSpriteSheet} {...this.spriteData} />
 
           {skipAble ? <Button content="Skip" onClick={this.onSkipClick} className="btn-warning btn-sm col"></Button> : ''}
         </Wobble>
