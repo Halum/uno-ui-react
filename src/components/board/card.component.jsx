@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import {Sprite} from 'react-spritesheet';
 import PropTypes from 'prop-types';
 
 import spriteMap from '../../lib/card.sprite.map';
@@ -11,6 +10,7 @@ import largeSpriteSheet from './../../images/spritesheet_uno.png';
 import socketService from './../../lib/socketService';
 import {Wobble} from 'react-motions';
 import Button from './../button.component';
+import BackgroundImage from './../background.image.component';
 
 class Card extends Component {
   constructor(props) {
@@ -57,12 +57,12 @@ class Card extends Component {
     y *= multiplier;
     width *= multiplier;
     height *= multiplier;
-    const backgroundSize = {
+    const size = {
       width: 1871 * multiplier,
       height: 1024 * multiplier
     }
 
-    return {x, y, width, height, backgroundSize};
+    return {x, y, width, height, size};
   }
 
   render() {
@@ -71,7 +71,7 @@ class Card extends Component {
     return (
       <div className={'d-inline-block pl-2 ' + this.props.style} onClick={this.onCardClick}>
         <Wobble duration={skipAble ? 10 : 0} infinite={skipAble ? true : false}>
-          <Sprite filename={largeSpriteSheet} {...this.spriteData}></Sprite>
+          <BackgroundImage filename={largeSpriteSheet} {...this.spriteData} />
 
           {skipAble ? <Button content="Skip" onClick={this.onSkipClick} className="btn-warning btn-sm col"></Button> : ''}
         </Wobble>
