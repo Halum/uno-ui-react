@@ -8,7 +8,7 @@ import utils from './../../lib/utils';
 
 import largeSpriteSheet from './../../images/spritesheet_uno.png';
 import socketService from './../../lib/socketService';
-import {Wobble} from 'react-motions';
+import {Pulse, Wobble} from 'react-motions';
 import Button from './../button.component';
 import BackgroundImage from './../background.image.component';
 
@@ -60,14 +60,23 @@ class Card extends Component {
 
   render() {
     const {skipAble} = this.props;
+    const {highlight} = this.props;
+    const skipButton = skipAble 
+      ? <Button content="Skip" onClick={this.onSkipClick} className="btn-warning btn-sm col"></Button> 
+      : '';
 
     return (
       <div className={'d-inline-block pl-2 ' + this.props.style} onClick={this.onCardClick}>
-        <Wobble duration={skipAble ? 10 : 0} infinite={skipAble ? true : false}>
-          <BackgroundImage filename={largeSpriteSheet} {...this.spriteData} />
-
-          {skipAble ? <Button content="Skip" onClick={this.onSkipClick} className="btn-warning btn-sm col"></Button> : ''}
-        </Wobble>
+        {
+          skipAble 
+            ? <Wobble duration={skipAble ? 10 : 0} infinite={skipAble}>
+                <BackgroundImage filename={largeSpriteSheet} {...this.spriteData} />
+                {skipButton}
+              </Wobble>
+            : <Pulse duration={highlight ? 2 : 0} infinite={highlight}>
+                <BackgroundImage filename={largeSpriteSheet} {...this.spriteData} />
+              </Pulse>
+        }
       </div>
     );
   }
@@ -76,7 +85,8 @@ class Card extends Component {
 Card.defaultProps = {
   takeAble: false,
   playAble: false,
-  skipAble: false
+  skipAble: false,
+  highlight: false
 }
 
 Card.propTypes = {
@@ -86,7 +96,8 @@ Card.propTypes = {
   playAble: PropTypes.bool,
   onWildCard: PropTypes.func,
   style: PropTypes.string,
-  skipAble: PropTypes.bool
+  skipAble: PropTypes.bool,
+  highlight: PropTypes.bool
 };
 
 const mapStoreToProps = store => {

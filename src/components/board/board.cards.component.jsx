@@ -14,6 +14,8 @@ class BoardCards extends Component {
   }
 
   showCard() {
+    if(!has(this.props.game, 'desk.discard')) return null;
+
     let {color, symbol} = this.props.game.desk.discard;
     const key = color + symbol;
     
@@ -23,10 +25,7 @@ class BoardCards extends Component {
   render() {
     return (
       <div>
-        {has(this.props.game, 'desk.discard')
-          ? this.showCard()
-          : ''
-        }
+        {this.showCard()}
         <Card color={this.coverColor} symbol={this.coverSymbol} key={this.coverKey} takeAble />
       </div>
     );

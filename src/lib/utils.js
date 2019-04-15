@@ -18,6 +18,11 @@ const Utils = {
     } else if(width >= SMALL_SCREEN_WIDTH) {
       return 0.48;
     }
+  },
+
+  canPlay(deskCard, card) {
+    const wildTypes = ['wild', '4+'];
+    return (card.color === deskCard.color || card.symbol === deskCard.symbol || wildTypes.includes(card.symbol));
   }
 };
 

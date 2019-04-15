@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Card from './card.component';
 import ColorChooserModal from './../modal/color.chooser.modal.component';
 import findIndex from 'lodash.findindex';
+import has from 'lodash.has';
+import utils from './../../lib/utils';
 
 class PlayerCards extends Component {
   constructor(props) {
@@ -39,8 +41,14 @@ class PlayerCards extends Component {
     const skipAble = takenCard 
       ? findIndex(cards, takenCard) === index 
       : false;
+    
+    // is this card palyable && player is not playing the taken card && its his turn
+    // so highlight this card if it can be played on desk card
+    const highlight = has(this.props.game, 'desk.discard') && !skipAble && this.props.player.turn
+      ? utils.canPlay(this.props.game.desk.discard, card)
+      : false;
 
-    return <Card {...{color, symbol, key, skipAble}} playAble onWildCard={this.onWildCard}></Card>
+    return <Card {...{color, symbol, key, skipAble, highlight}} playAble onWildCard={this.onWildCard}></Card>
   }
 
   showCards() {
