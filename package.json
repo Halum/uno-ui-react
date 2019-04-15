@@ -1,0 +1,44 @@
+{
+  "name": "uno-ui-react",
+  "version": "0.8.8-alpha",
+  "private": true,
+  "proxy": "http://localhost:3500/",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "lodash.findindex": "^4.6.0",
+    "lodash.get": "^4.4.2",
+    "lodash.has": "^4.5.2",
+    "popper.js": "^1.14.7",
+    "prop-type": "0.0.1",
+    "react": "^16.8.3",
+    "react-bs-notifier": "^5.0.0",
+    "react-copy-to-clipboard": "^5.0.1",
+    "react-dom": "^16.8.3",
+    "react-ga": "^2.5.7",
+    "react-motions": "^0.3.0",
+    "react-octicons": "^0.2.0",
+    "react-redux": "^6.0.1",
+    "react-scripts": "^2.1.5",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.2.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
