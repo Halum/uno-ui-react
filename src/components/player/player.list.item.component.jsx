@@ -14,6 +14,7 @@ class PlayerListItem extends Component {
 
     this.unoPlayed = false;
     this.unoSound = new Audio(unoMp3);
+    this.onClaimUno = this.onClaimUno.bind(this);
     this.onReadyClick = this.onReadyClick.bind(this);
     this.onShowHideClick = this.onShowHideClick.bind(this);
     this.playUnoIfRequired = this.playUnoIfRequired.bind(this);
@@ -26,6 +27,11 @@ class PlayerListItem extends Component {
     return this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>
   }
 
+  onClaimUno(event) {
+    event.preventDefault();
+    socketService.claimUno(this.props.playerName);
+  }
+
   onReadyClick() {
     const gameId = this.props.game.gameId;
     const playerId = this.props.player.playerId;
@@ -33,7 +39,8 @@ class PlayerListItem extends Component {
     this.props.playerReady({gameId, playerId});
   }
 
-  onShowHideClick() {
+  onShowHideClick(event) {
+    event.preventDefault();
     const canSpectate = get(this.props.player, 'status') === 'complete' && !this.props.showingCards;
     if(!canSpectate) return;
 
@@ -80,6 +87,7 @@ class PlayerListItem extends Component {
             <div className="btn-group dropleft">
                 <ThreeBarsIcon className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
               <div className="dropdown-menu">
+                <a href="#" className={`dropdown-item`} onClick={this.onClaimUno}>Claim 'UNO' Penalty</a>
                 <a href="#" className={`dropdown-item`} onClick={this.onShowHideClick}>Spectate</a>
               </div>
             </div>
