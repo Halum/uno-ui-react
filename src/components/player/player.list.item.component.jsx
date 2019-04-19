@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {ArrowDownIcon, ArrowUpIcon, StopIcon} from 'react-octicons';
+import {ArrowDownIcon, ArrowUpIcon, StopIcon, ThreeBarsIcon} from 'react-octicons';
 import {Shake} from 'react-motions';
 import Button from './../button.component';
 import get from 'lodash.get';
@@ -34,6 +34,9 @@ class PlayerListItem extends Component {
   }
 
   onShowHideClick() {
+    const canSpectate = get(this.props.player, 'status') === 'complete' && !this.props.showingCards;
+    if(!canSpectate) return;
+
     const {playerId} = this.props.player;
     const {playerName} = this.props;
 
@@ -56,9 +59,6 @@ class PlayerListItem extends Component {
     // show the ready button only when player status is 'waiting' andparticipant name is same as player name
     const showReadyButton = get(this.props.player, 'status') === 'waiting' && get(this.props.player, 'name') === this.props.playerName
       ? '' : 'd-none';
-    // show the Spectate button only when player status is 'complete'
-    const showSpectateButton = get(this.props.player, 'status') === 'complete' && !this.props.showingCards
-      ? '' : 'd-none';
     const showUno = this.props.uno ? 'visible' : 'invisible';
 
     return (
@@ -72,11 +72,17 @@ class PlayerListItem extends Component {
           </div>
           <div>
             <Button content="Ready" className={`btn-outline-success mr-5 ${showReadyButton}`} onClick={this.onReadyClick}/>
-            <Button content="Spectate" className={`btn-sm btn-info mr-5 ${showSpectateButton}`} onClick={this.onShowHideClick}/>
           </div>
           <div>
             <span className={`badge badge-warning mr-3 ${showUno}`}>UNO</span>
-            <span className="badge badge-dark badge-pill">{this.props.cardCount}</span>
+            <span className="badge badge-dark badge-pill mr-3">{this.props.cardCount}</span>
+
+            <div className="btn-group dropleft">
+                <ThreeBarsIcon className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+              <div className="dropdown-menu">
+                <a href="#" className={`dropdown-item`} onClick={this.onShowHideClick}>Spectate</a>
+              </div>
+            </div>
           </div>
         </li>
       </Shake>
