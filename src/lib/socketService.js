@@ -27,6 +27,10 @@ class SocketService {
     this.socket.emit('call-uno', playerId);
   }
 
+  claimUno(playerName) {
+    this.socket.emit('claim-uno', playerName);
+  }
+
   playCard(playerId, card) {    
     this.socket.emit('play-card', {playerId, card});
   }

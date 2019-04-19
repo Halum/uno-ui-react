@@ -31,7 +31,9 @@ class HeaderComponent extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark bg-dark">
-          <div className="navbar-brand h1">Halum UNO <small className="text-muted">&ndash; {packageJson.version}</small></div>
+          <div className="navbar-brand h1">Halum UNO <small className="text-muted">&ndash; {packageJson.version}</small>
+            <a className="text-muted ml-4" target="_blank" href="https://en.wikipedia.org/wiki/Uno_(card_game)">Rules</a>
+          </div>
           <div>
             { get(this.props.player, 'status') === undefined
               ? <Button content="Join Game"
