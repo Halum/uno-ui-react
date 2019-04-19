@@ -9,10 +9,11 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 const CreateGameModalComponent = props => {
   const [playerName, setPlayerName] = useState('');
   const [randomizePlayers, setRandomizePlayers] = useState(false);
+  const [progressiveUno, setProgressiveUno] = useState(false);
   const [copyTitle, setCopyTitle] = useState('Copy');
 
   function onCreateClick() {
-    props.createNewGame({randomizePlayers})
+    props.createNewGame({randomizePlayers, progressiveUno})
       .then((data) => {
         const {gameId} = data.payload;
         return props.joinGame({gameId, playerName});
@@ -61,11 +62,20 @@ const CreateGameModalComponent = props => {
 
         <div className="form-group form-check">
           <label className="form-check-label">
+            <input className="form-check-input" type="checkbox" onChange={e => setProgressiveUno(e.target.checked)} 
+              name="randomizePlayers" checked={progressiveUno}/>
+            Progresseve Uno
+          </label>
+        </div>
+
+        <div className="form-group form-check">
+          <label className="form-check-label">
             <input className="form-check-input" type="checkbox" onChange={e => setRandomizePlayers(e.target.checked)} 
               name="randomizePlayers" checked={randomizePlayers}/>
             Randomize Player
           </label>
         </div>
+
         <Button content="Create" onClick={onCreateClick} 
           className="btn-success col"></Button>
       </>
