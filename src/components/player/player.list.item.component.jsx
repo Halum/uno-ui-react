@@ -67,8 +67,10 @@ class PlayerListItem extends Component {
     const showReadyButton = get(this.props.player, 'status') === 'waiting' && get(this.props.player, 'name') === this.props.playerName
       ? '' : 'd-none';
     const showUno = this.props.uno ? 'visible' : 'invisible';
+    const showThreeBar = this.props.player.name !== this.props.playerName ? 'visible' : 'invisible';
 
     return (
+      <div style={{zIndex: this.props.zIndex}}>
       <Shake duration={isMeCurrentPlayer ? 4 : 0} infinite={isMeCurrentPlayer ? true : false}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' + (isMeCurrentPlayer ? 'active' : '')}>
           <div>
@@ -84,7 +86,7 @@ class PlayerListItem extends Component {
             <span className={`badge badge-warning mr-3 ${showUno}`}>UNO</span>
             <span className="badge badge-dark badge-pill mr-3">{this.props.cardCount}</span>
 
-            <div className="btn-group dropleft">
+            <div className={`btn-group dropleft ${showThreeBar}`}>
                 <ThreeBarsIcon className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
               <div className="dropdown-menu">
                 <a href="#" className={`dropdown-item`} onClick={this.onClaimUno}>Claim 'UNO' Penalty</a>
@@ -94,8 +96,13 @@ class PlayerListItem extends Component {
           </div>
         </li>
       </Shake>
+      </div>
     );
   }
+};
+
+PlayerListItem.defaultProps = {
+  zIndex: 0
 };
 
 const mapStoreToProps = store => {

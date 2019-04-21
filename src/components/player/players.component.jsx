@@ -19,8 +19,9 @@ const PlayersComponent = (props) => {
       const {playerName, cardCount, playing, status, uno, cards=[]} = participant;
       const key = playerName + index;
       const showingCards = cards.length > 0
+      const zIndex = participants.length - index;
       
-      return <PlayerListItem {...{playerName, cardCount, playing, status, uno, showingCards, key}}/>
+      return <PlayerListItem {...{playerName, cardCount, playing, status, uno, showingCards, key, zIndex}}/>
     });
 
     return participants.length ? participants : '';
