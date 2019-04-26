@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {ArrowDownIcon, ArrowUpIcon, StopIcon, ThreeBarsIcon} from 'react-octicons';
+import PropTypes from 'prop-types';
+import {ArrowDownIcon, ArrowUpIcon, StopIcon} from 'react-octicons';
 import {Shake} from 'react-motions';
-import Button from './../button.component';
 import get from 'lodash.get';
+
+import Button from './../button.component';
 import { playerReady } from './../../actions/initialAction';
 import unoMp3 from './../../sounds/uno.mp3';
-import socketService from './../../lib/socketService';
+import PlayerMenu from './player.menu.component';
 
 class PlayerListItem extends Component {
   constructor(props) {
@@ -14,9 +16,7 @@ class PlayerListItem extends Component {
 
     this.unoPlayed = false;
     this.unoSound = new Audio(unoMp3);
-    this.onClaimUno = this.onClaimUno.bind(this);
     this.onReadyClick = this.onReadyClick.bind(this);
-    this.onShowHideClick = this.onShowHideClick.bind(this);
     this.playUnoIfRequired = this.playUnoIfRequired.bind(this);
   }
 
@@ -27,27 +27,11 @@ class PlayerListItem extends Component {
     return this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>
   }
 
-  onClaimUno(event) {
-    event.preventDefault();
-    socketService.claimUno(this.props.playerName);
-  }
-
   onReadyClick() {
     const gameId = this.props.game.gameId;
     const playerId = this.props.player.playerId;
 
     this.props.playerReady({gameId, playerId});
-  }
-
-  onShowHideClick(event) {
-    event.preventDefault();
-    const canSpectate = get(this.props.player, 'status') === 'complete' && !this.props.showingCards;
-    if(!canSpectate) return;
-
-    const {playerId} = this.props.player;
-    const {playerName} = this.props;
-
-    socketService.viewCards(playerId, playerName);
   }
 
   playUnoIfRequired() {
@@ -67,7 +51,7 @@ class PlayerListItem extends Component {
     const showReadyButton = get(this.props.player, 'status') === 'waiting' && get(this.props.player, 'name') === this.props.playerName
       ? '' : 'd-none';
     const showUno = this.props.uno ? 'visible' : 'invisible';
-    const showThreeBar = this.props.player.name !== this.props.playerName ? 'visible' : 'invisible';
+    const showThreeBar = this.props.player.name !== this.props.playerName;
 
     return (
       <div style={{zIndex: this.props.zIndex}}>
@@ -85,14 +69,7 @@ class PlayerListItem extends Component {
           <div>
             <span className={`badge badge-warning mr-3 ${showUno}`}>UNO</span>
             <span className="badge badge-dark badge-pill mr-3">{this.props.cardCount}</span>
-
-            <div className={`btn-group dropleft ${showThreeBar}`}>
-                <ThreeBarsIcon className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
-              <div className="dropdown-menu">
-                <a href="#" className={`dropdown-item`} onClick={this.onClaimUno}>Claim 'UNO' Penalty</a>
-                <a href="#" className={`dropdown-item`} onClick={this.onShowHideClick}>Spectate</a>
-              </div>
-            </div>
+            <PlayerMenu show={showThreeBar} playerName={this.props.playerName}/>
           </div>
         </li>
       </Shake>
@@ -105,10 +82,18 @@ PlayerListItem.defaultProps = {
   zIndex: 0
 };
 
+PlayerListItem.propTypes = {
+  cardCount: PropTypes.number,
+  playerName: PropTypes.string.isRequired,
+  playing: PropTypes.bool,
+  showingCards: PropTypes.bool,
+  zIndex: PropTypes.number,
+};
+
 const mapStoreToProps = store => {
   return {
     game: store.initializer.game,
-    player: store.initializer.player
+    player: store.initializer.player,
   };
 };
 
