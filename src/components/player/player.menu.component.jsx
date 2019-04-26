@@ -11,6 +11,7 @@ class PlayerMenuComponent extends Component {
     super(props);
 
     this.onClaimUno = this.onClaimUno.bind(this);
+    this.onKickClick = this.onKickClick.bind(this);
     this.onShowHideClick = this.onShowHideClick.bind(this);
   }
 
@@ -48,7 +49,7 @@ class PlayerMenuComponent extends Component {
             <GistSecretIcon/>
             <span className="ml-2">Claim 'UNO'</span>
           </a>
-          <a href="#" className={`dropdown-item`} onClick={this.onClaimUno}>
+          <a href="#" className={`dropdown-item`} onClick={this.onKickClick}>
             <ThumbsdownIcon/>
             <span className="ml-2">Vote to Kick</span>
           </a>
