@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {ArrowDownIcon, ArrowUpIcon, StopIcon} from 'react-octicons';
 import {Shake} from 'react-motions';
 import get from 'lodash.get';
@@ -81,10 +82,18 @@ PlayerListItem.defaultProps = {
   zIndex: 0
 };
 
+PlayerListItem.propTypes = {
+  cardCount: PropTypes.number,
+  playerName: PropTypes.string.isRequired,
+  playing: PropTypes.bool,
+  showingCards: PropTypes.bool,
+  zIndex: PropTypes.number,
+};
+
 const mapStoreToProps = store => {
   return {
     game: store.initializer.game,
-    player: store.initializer.player
+    player: store.initializer.player,
   };
 };
 
