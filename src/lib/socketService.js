@@ -10,8 +10,19 @@ class SocketService {
         console.log('Connected');
       });
 
+      this.socket.on('disconnect', () => {
+        console.log('Disconnected');
+      })
+
       this.socket.on(gameId, console.log);
       this.socket.on('count-down', console.log);
+    }
+  }
+
+  disconnect() {
+    if(this.socket) {
+      this.socket.disconnect();
+      this.socket = undefined;
     }
   }
 

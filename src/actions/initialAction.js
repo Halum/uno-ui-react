@@ -39,7 +39,7 @@ export const joinGame = payload => dispatch => {
 export const leaveGame = (gameId, playerId) => dispatch => {
   const reqUrl = `${url}/${gameId}/player/${playerId}/leave`;
 
-  deleteReq(reqUrl)
+  return deleteReq(reqUrl)
   .then(data => 
     dispatch({
       type: LEFT_GAME

@@ -8,6 +8,7 @@ import { toggleJoinGameModal } from './../actions/uiAction';
 import get from 'lodash.get';
 import packageJson from './../../package.json';
 import $ from 'jquery';
+import socketService from './../lib/socketService';
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -32,7 +33,9 @@ class HeaderComponent extends Component {
     const {gameId} = this.props.game;
     const {playerId} = this.props.player;
 
-    this.props.leaveGame(gameId, playerId);
+    this.props
+      .leaveGame(gameId, playerId)
+      .then(() => socketService.disconnect());
   }
 
   render() {
