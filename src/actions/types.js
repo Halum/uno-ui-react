@@ -6,3 +6,4 @@ export const GAME_UPDATE = 'GAME_UPDATE';
 export const PLAYER_UPDATE = 'PLAYER_UPDATE';
 export const GAME_ERROR = 'GAME_ERROR';
 export const RESET_ERROR = 'RESET_ERROR';
+export const LEFT_GAME = 'LEFT_GAME';

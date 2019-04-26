@@ -1,4 +1,4 @@
-import {TOGGLE_JOIN_GAME_MODAL} from '../actions/types';
+import {TOGGLE_JOIN_GAME_MODAL, LEFT_GAME} from '../actions/types';
 
 const initialState = {
   showJoinGameModal: false
@@ -11,6 +11,8 @@ export default (state = initialState, action) => {
         ...state,
         ...{showJoinGameModal: !state.showJoinGameModal}
       };
+    case LEFT_GAME:
+      return {...initialState}
     default:
       return state;
   }

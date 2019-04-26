@@ -1,5 +1,8 @@
-import {NEW_GAME, JOIN_GAME, PLAYER_READY, GAME_UPDATE, PLAYER_UPDATE, GAME_ERROR, RESET_ERROR} from './types';
-import { post } from './../lib/request';
+import {
+  NEW_GAME, JOIN_GAME, PLAYER_READY, 
+  GAME_UPDATE, PLAYER_UPDATE, GAME_ERROR, 
+  RESET_ERROR, LEFT_GAME} from './types';
+import { postReq, deleteReq } from './../lib/request';
 import socketService from './../lib/socketService';
 
 const url = `/uno`;
@@ -7,7 +10,7 @@ const url = `/uno`;
 export const createNewGame = payload => dispatch => {
   const reqUrl = `${url}/new`;
 
-  return post(reqUrl, payload)
+  return postReq(reqUrl, payload)
     .then(data => 
       dispatch({
         type: NEW_GAME,
@@ -19,7 +22,7 @@ export const createNewGame = payload => dispatch => {
 export const joinGame = payload => dispatch => {
   const reqUrl = `${url}/player`;
 
-  post(reqUrl, payload)
+  postReq(reqUrl, payload)
   .then(data => 
     dispatch({
       type: JOIN_GAME,
@@ -33,10 +36,26 @@ export const joinGame = payload => dispatch => {
   });
 };
 
+export const leaveGame = (gameId, playerId) => dispatch => {
+  const reqUrl = `${url}/${gameId}/player/${playerId}/leave`;
+
+  return deleteReq(reqUrl)
+  .then(data => 
+    dispatch({
+      type: LEFT_GAME
+    })
+  ).catch(data =>
+    dispatch({
+      type: GAME_ERROR,
+      payload: data.error || 'Bad Luck'
+    })
+  );
+}
+
 export const playerReady = payload => dispatch => {
   const reqUrl = `${url}/player/ready`;
 
-  post(reqUrl, payload)
+  postReq(reqUrl, payload)
   .then(data => 
     dispatch({
       type: PLAYER_READY,

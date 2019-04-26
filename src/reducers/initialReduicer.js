@@ -1,4 +1,7 @@
-import {NEW_GAME, JOIN_GAME, PLAYER_READY, PLAYER_UPDATE, GAME_UPDATE, GAME_ERROR, RESET_ERROR} from '../actions/types';
+import {
+  NEW_GAME, JOIN_GAME, PLAYER_READY, 
+  PLAYER_UPDATE, GAME_UPDATE, GAME_ERROR, 
+  RESET_ERROR, LEFT_GAME} from '../actions/types';
 
 const initialState = {
   game: {},
@@ -39,6 +42,8 @@ export default (state = initialState, action) => {
       return {...state, error: action.payload}
     case RESET_ERROR:
       return {...state, error: null}
+    case LEFT_GAME:
+      return {...initialState}
     default:
       return state;
   }
