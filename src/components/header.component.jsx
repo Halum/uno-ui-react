@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Button from './button.component';
 import CreateGameModal from './modal/create.game.modal.component';
 import JoinGameModal from './modal/join.game.modal.component';
-import { createNewGame } from './../actions/initialAction';
+import { createNewGame, leaveGame } from './../actions/initialAction';
 import { toggleJoinGameModal } from './../actions/uiAction';
 import get from 'lodash.get';
 import packageJson from './../../package.json';
@@ -17,6 +17,7 @@ class HeaderComponent extends Component {
 
     this.onCreateGameClick = this.onCreateGameClick.bind(this);
     this.onJoinGameClick = this.onJoinGameClick.bind(this);
+    this.onLeaveGameClick = this.onLeaveGameClick.bind(this);
   }
 
   onCreateGameClick() {
@@ -25,6 +26,13 @@ class HeaderComponent extends Component {
 
   onJoinGameClick() {
     this.props.toggleJoinGameModal();
+  }
+
+  onLeaveGameClick() {
+    const {gameId} = this.props.game;
+    const {playerId} = this.props.player;
+
+    this.props.leaveGame(gameId, playerId);
   }
 
   render() {
@@ -49,6 +57,13 @@ class HeaderComponent extends Component {
                 </Button>
               : ''
             }
+            { get(this.props.player, 'status') !== undefined
+              ?  <Button content="Leave Game" 
+                  className="btn-outline-danger" wrapperClassName="pl-3"
+                  onClick={this.onLeaveGameClick}>
+                </Button>
+              : ''
+            }
           </div>
         </nav>
         <CreateGameModal id={this.createGameModalId} />
@@ -65,4 +80,4 @@ const mapStoreToProps = store => {
   };
 };
 
-export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal })(HeaderComponent);
+export default connect(mapStoreToProps, { createNewGame, toggleJoinGameModal, leaveGame })(HeaderComponent);
