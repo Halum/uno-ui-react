@@ -1,9 +1,12 @@
+
+import React from 'react';
 import {
   NEW_GAME, JOIN_GAME, PLAYER_READY, 
   GAME_UPDATE, PLAYER_UPDATE, GAME_ERROR, 
   RESET_ERROR, LEFT_GAME} from './types';
-import { postReq, deleteReq } from './../lib/request';
-import socketService from './../lib/socketService';
+import { postReq, deleteReq } from '../lib/request';
+import socketService from '../lib/socketService';
+import {createNotification, NOTIFICATION_TYPE_INFO, NOTIFICATION_TYPE_ERROR} from 'react-redux-notify';
 
 const url = `/uno`;
 
@@ -29,10 +32,14 @@ export const joinGame = payload => dispatch => {
       payload: data
     })
   ).catch(data => {
-    dispatch({
-      type: GAME_ERROR,
-      payload: data.error || 'Bad Luck'
-    })
+    dispatch(createNotification({
+        message: data.error || 'Bad Luck',
+        type: NOTIFICATION_TYPE_ERROR,
+        duration: 5000,
+        canDismiss: true,
+        icon: <i className="fa fa-info-circle" />
+      })
+    )
   });
 };
 
@@ -45,10 +52,14 @@ export const leaveGame = (gameId, playerId) => dispatch => {
       type: LEFT_GAME
     })
   ).catch(data =>
-    dispatch({
-      type: GAME_ERROR,
-      payload: data.error || 'Bad Luck'
-    })
+    dispatch(createNotification({
+        message: data.error || 'Bad Luck',
+        type: NOTIFICATION_TYPE_ERROR,
+        duration: 5000,
+        canDismiss: true,
+        icon: <i className="fa fa-info-circle" />
+      })
+    )
   );
 }
 
@@ -72,12 +83,25 @@ export const resetError = () => dispatch => {
 
 export const prepareForSocket = ({gameId, playerId}) => dispatch => {
   socketService.connect(gameId);
+  
   socketService.onGameUpdate(gameId, data => dispatch({
     type: GAME_UPDATE,
     payload: data
   }));
+
   socketService.onPlayerUpdate(playerId, data => dispatch({
     type: PLAYER_UPDATE,
     payload: data
   }));
+
+  socketService.onNotification(data => 
+    dispatch(createNotification({
+        message: data,
+        type: NOTIFICATION_TYPE_INFO,
+        duration: 5000,
+        canDismiss: true,
+        icon: <i className="fa fa-info" />
+      })
+    )
+  );
 }

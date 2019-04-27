@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {AlertList} from "react-bs-notifier";
-import {resetError} from './../actions/initialAction';
+import {resetError} from '../actions/initialAction';
 
 class NotificationComponent extends React.Component {
   constructor(props) {

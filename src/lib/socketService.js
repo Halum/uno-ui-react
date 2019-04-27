@@ -30,6 +30,10 @@ class SocketService {
     this.socket && this.socket.on(gameId, callback);
   }
 
+  onNotification(callback) {
+    this.socket && this.socket.on('notification', data => {console.log(data); callback(data)});
+  }
+
   onPlayerUpdate(playerId, callback) {
     this.socket && this.socket.on(playerId, callback);
   }
