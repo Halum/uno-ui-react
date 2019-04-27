@@ -12,7 +12,6 @@ import store from './store';
 import './App.css';
 
 import Page from './components/page.component';
-import Notification from './components/notification.component';
 import { Notify } from 'react-redux-notify';
 
 class App extends Component {
@@ -27,7 +26,6 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Page/>
-        <Notification/>
         <Notify position="BottomLeft" showCloseAllBtn={false} />
       </Provider>
     );
