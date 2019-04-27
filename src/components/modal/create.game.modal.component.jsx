@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Button from './../button.component';
 import PropTypes from 'prop-types';
 import {createNewGame, joinGame} from './../../actions/initialAction';
-import {ClippyIcon} from 'react-octicons';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const CreateGameModalComponent = props => {
@@ -41,7 +40,7 @@ const CreateGameModalComponent = props => {
           <span className="col-sm-2">
             <CopyToClipboard text={gameId} onCopy={() => {setCopyTitle('Copied')}}>
               <button type="button" className="btn btn-info" title={copyTitle}>
-                <ClippyIcon/>
+                <i className="fa fa-clipboard" />
               </button>
             </CopyToClipboard>
           </span>

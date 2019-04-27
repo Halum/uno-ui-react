@@ -18,7 +18,7 @@ class PlayerListItemTimer extends Component {
   }
 
   componentDidMount() {
-    this.timer = setInterval(this.updateTimerView, 1500);
+    this.timer = setInterval(this.updateTimerView, 2000);
   }
 
   componentWillUnmount() {
