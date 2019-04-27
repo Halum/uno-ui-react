@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {ThreeBarsIcon, EyeIcon, GistSecretIcon, ThumbsdownIcon} from 'react-octicons';
 import get from 'lodash.get';
 
 import socketService from '../../lib/socketService';
@@ -43,18 +42,18 @@ class PlayerMenuComponent extends Component {
   render() {
     return (
       <div className={`btn-group dropleft ${this.props.show ? 'visible' : 'invisible'}`}>
-        <ThreeBarsIcon className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+        <i className="fa fa-bars" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
         <div className="dropdown-menu">
           <a href="#" className={`dropdown-item`} onClick={this.onClaimUno}>
-            <GistSecretIcon/>
+            <i className="fa fa-user-secret" />
             <span className="ml-2">Claim 'UNO'</span>
           </a>
           <a href="#" className={`dropdown-item`} onClick={this.onKickClick}>
-            <ThumbsdownIcon/>
+            <i className="fa fa-thumbs-down" />
             <span className="ml-2">Vote to Kick</span>
           </a>
           <a href="#" className={`dropdown-item`} onClick={this.onShowHideClick}>
-            <EyeIcon/>
+            <i className="fa fa-eye" />
             <span className="ml-2">Spectate</span>
           </a>
         </div>

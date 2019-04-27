@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {ArrowDownIcon, ArrowUpIcon, StopIcon} from 'react-octicons';
 import {Shake} from 'react-motions';
 import get from 'lodash.get';
 
@@ -22,9 +21,11 @@ class PlayerListItem extends Component {
 
   getPlayerIcon() {
     // show player not ready icon
-    if(this.props.status === 'waiting') return <StopIcon/>;
+    if(this.props.status === 'waiting') return <i className="fa fa-hourglass-half" />;
     // show direction icon only for the current player
-    return this.props.game.direction > 0 ? <ArrowDownIcon/> : <ArrowUpIcon/>
+    return this.props.game.direction > 0 
+      ? <i className="fa fa-arrow-up" />
+      : <i className="fa fa-arrow-down" />
   }
 
   onReadyClick() {
@@ -58,7 +59,7 @@ class PlayerListItem extends Component {
       <Shake duration={isMeCurrentPlayer ? 4 : 0} infinite={isMeCurrentPlayer ? true : false}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' + (isMeCurrentPlayer ? 'active' : '')}>
           <div>
-            <span className={this.props.playing || this.props.status === 'waiting' ? 'visible' : 'invisible'}>
+            <span className={this.props.playing || this.props.status === 'waiting' ? 'visible' : 'visible'}>
               {this.getPlayerIcon()}
             </span>
             <span className="pl-3">{this.props.playerName}</span>
