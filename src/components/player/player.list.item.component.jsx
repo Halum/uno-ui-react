@@ -59,7 +59,7 @@ class PlayerListItem extends Component {
       <Shake duration={isMeCurrentPlayer ? 4 : 0} infinite={isMeCurrentPlayer ? true : false}>
         <li className={'list-group-item d-flex justify-content-between align-items-center ' + (isMeCurrentPlayer ? 'active' : '')}>
           <div>
-            <span className={this.props.playing || this.props.status === 'waiting' ? 'visible' : 'visible'}>
+            <span className={this.props.playing || this.props.status === 'waiting' ? 'visible' : 'invisible'}>
               {this.getPlayerIcon()}
             </span>
             <span className="pl-3">{this.props.playerName}</span>
