@@ -23,7 +23,7 @@ class PlayerListItem extends Component {
     // show player not ready icon
     if(this.props.status === 'waiting') return <i className="fa fa-hourglass-half" />;
     // show direction icon only for the current player
-    return this.props.game.direction > 0 
+    return this.props.game.direction < 0 
       ? <i className="fa fa-arrow-up" />
       : <i className="fa fa-arrow-down" />
   }
