@@ -15,6 +15,7 @@ const CreateGameModalComponent = props => {
     props.createNewGame({randomizePlayers, progressiveUno})
       .then((data) => {
         const {gameId} = data.payload;
+        setCopyTitle('Copy');
         return props.joinGame({gameId, playerName});
       });
   }
