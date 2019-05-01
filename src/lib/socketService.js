@@ -3,7 +3,9 @@ import io  from 'socket.io-client';
 const url = ``;
 class SocketService {
   connect(gameId) {
+    console.log('connect', this.socket);
     if(!this.socket || this.socket.disconnected) {
+      console.log('connecting');
       this.socket = this.socket || io(`${url}/${gameId}`);
 
       this.socket.on('connect', () => {
@@ -35,7 +37,12 @@ class SocketService {
   }
 
   onPlayerUpdate(playerId, callback) {
-    this.socket && this.socket.on(playerId, callback);
+    this.socket && this.socket.on(playerId, data => {
+      if(data.type === 'LEFT_GAME') {
+        this.disconnect();
+      }
+      callback(data)
+    });
   }
 
   callUno(playerId) {

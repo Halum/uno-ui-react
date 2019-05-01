@@ -89,7 +89,7 @@ export const prepareForSocket = ({gameId, playerId}) => dispatch => {
   }));
 
   socketService.onPlayerUpdate(playerId, data => dispatch({
-    type: PLAYER_UPDATE,
+    type: data.type || PLAYER_UPDATE,
     payload: data
   }));
 
