@@ -1,9 +1,7 @@
-// these valuse are from Bootsrtap 4
-// https://getbootstrap.com/docs/4.0/layout/grid/#grid-options
-const EXTRA_LARGE_SCREEN_WIDTH = 1200;
-const LARGE_SCREEN_WIDTH = 992;
-const MEDIUM_SCREEN_WIDTH = 768;
-const SMALL_SCREEN_WIDTH = 576;
+const EXTRA_LARGE_SCREEN_WIDTH = 1900;
+const LARGE_SCREEN_WIDTH = 1600;
+const MEDIUM_SCREEN_WIDTH = 1300;
+const SMALL_SCREEN_WIDTH = 640;
 
 const Utils = {
   screenMultiplier() {
